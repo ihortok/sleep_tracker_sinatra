@@ -1,5 +1,3 @@
-require 'sinatra'
+require './app'
 
-get '/' do
-  'Hello!'
-end
+run Sinatra::Application
