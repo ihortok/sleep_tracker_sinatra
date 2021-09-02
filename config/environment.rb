@@ -1,10 +1,6 @@
+require_relative 'application'
+
 ENV['SINATRA_ENV'] ||= 'development'
-
-require 'sinatra'
-require 'dotenv'
-require 'sinatra/activerecord'
-
-Dotenv.load
 
 configure :development do
   db = URI.parse(ENV['DEV_DATABASE_URL'])

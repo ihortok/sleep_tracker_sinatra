@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.1'
 
 gem 'activerecord'
+gem 'bcrypt'
 gem 'dotenv'
 gem 'pg'
 gem 'pry'
