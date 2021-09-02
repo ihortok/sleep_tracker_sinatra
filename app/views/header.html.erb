@@ -1,0 +1,9 @@
+<header>
+  <% if logged_in? %>
+    <form action="/users/sign_out" method="post">
+      <button type="submit" >
+        Sign out
+      </button>
+    </form>
+  <% end %>
+</header>
