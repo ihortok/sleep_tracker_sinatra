@@ -4,4 +4,5 @@
 class Baby < ActiveRecord::Base
   belongs_to :user
   has_many :baby_params
+  has_many :sleeps
 end
