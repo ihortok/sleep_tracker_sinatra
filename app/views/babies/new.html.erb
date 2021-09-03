@@ -1,0 +1,25 @@
+<form action="/babies/create" method="post">
+  <label>
+    Name:
+    <br>
+    <input type="text" name="name">
+  </label>
+  <br>
+  <label>
+    Gender:
+    <br>
+    <select name="gender">
+      <option hidden disabled selected value></option>
+      <option value="G">Girl</option>
+      <option value="B">Boy</option>
+    </select>
+  </label>
+  <br>
+  <label>
+    Date of Birth:
+    <br>
+    <input type="datetime-local" name="date_of_birth">
+  </label>
+  <br>
+  <input type="submit" value="Add baby">
+<form>
