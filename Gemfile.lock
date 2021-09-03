@@ -81,6 +81,7 @@ DEPENDENCIES
   rake
   sinatra
   sinatra-activerecord
+  tzinfo
 
 RUBY VERSION
    ruby 3.0.1p64
