@@ -2,6 +2,12 @@
 
 # SleepsController
 class SleepsController < ApplicationController
+  get '/sleeps/new' do
+    redirect '/users/sign_in' unless logged_in?
+
+    erb :'sleeps/new.html', layout: :'layout.html'
+  end
+
   post '/sleeps/create' do
     redirect '/users/sign_in' and return unless logged_in?
 
@@ -10,7 +16,7 @@ class SleepsController < ApplicationController
     if sleep.save
       redirect '/dashboard'
     else
-      erb :'dashboard.html', locals: { message: 'Something went wrong. Please try again.' }
+      erb :'dashboard.html', layout: :'layout.html', locals: { message: 'Something went wrong. Please try again.' }
     end
   end
 

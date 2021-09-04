@@ -1,0 +1,45 @@
+<form action="/sleeps/create" method="post">
+  <% current_time = Time.new.in_time_zone(current_user.time_zone) %>
+  <h3>Start at</h3>
+  <label>Year: <br>
+    <input type="number" name="sleep_start_at[year]" value="<%= current_time.year %>">
+  </label>
+  <br>
+  <label>Month: <br>
+    <input type="number" name="sleep_start_at[month]" value="<%= current_time.month %>">
+  </label>
+  <br>
+  <label>Day: <br>
+    <input type="number" name="sleep_start_at[day]" value="<%= current_time.day %>">
+  </label>
+  <br>
+  <label>Hour: <br>
+    <input type="number" name="sleep_start_at[hour]" value="<%= current_time.hour %>">
+  </label>
+  <br>
+  <label>Minute: <br>
+    <input type="number" name="sleep_start_at[minute]" value="<%= current_time.min %>">
+  </label>
+  <h3>End at</h3>
+  <label>Year: <br>
+    <input type="number" name="sleep_end_at[year]" value="<%= current_time.year %>">
+  </label>
+  <br>
+  <label>Month: <br>
+    <input type="number" name="sleep_end_at[month]" value="<%= current_time.month %>">
+  </label>
+  <br>
+  <label>Day: <br>
+    <input type="number" name="sleep_end_at[day]" value="<%= current_time.day %>">
+  </label>
+  <br>
+  <label>Hour: <br>
+    <input type="number" name="sleep_end_at[hour]" value="<%= current_time.hour %>">
+  </label>
+  <br>
+  <label>Minute: <br>
+    <input type="number" name="sleep_end_at[minute]" value="<%= current_time.min %>">
+  </label>
+  <br>
+  <input type="submit" value="Start">
+<form>
