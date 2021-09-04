@@ -1,28 +1,28 @@
-<button id="set_sleep_finish">Set sleep finish</button>
+<button id="set_sleep_finished_at">Set sleep finish</button>
 
 <form action="/sleeps/create" method="post">
   <% current_time = Time.new.in_time_zone(current_user.time_zone) %>
   <h3>Started at</h3>
   <label>Year: <br>
-    <input type="number" name="sleep_start_at[year]" value="<%= current_time.year %>">
+    <input type="number" name="sleep_started_at[year]" value="<%= current_time.year %>">
   </label>
   <br>
   <label>Month: <br>
-    <input type="number" name="sleep_start_at[month]" value="<%= current_time.month %>">
+    <input type="number" name="sleep_started_at[month]" value="<%= current_time.month %>">
   </label>
   <br>
   <label>Day: <br>
-    <input type="number" name="sleep_start_at[day]" value="<%= current_time.day %>">
+    <input type="number" name="sleep_started_at[day]" value="<%= current_time.day %>">
   </label>
   <br>
   <label>Hour: <br>
-    <input type="number" name="sleep_start_at[hour]" value="<%= current_time.hour %>">
+    <input type="number" name="sleep_started_at[hour]" value="<%= current_time.hour %>">
   </label>
   <br>
   <label>Minute: <br>
-    <input type="number" name="sleep_start_at[minute]" value="<%= current_time.min %>">
+    <input type="number" name="sleep_started_at[minute]" value="<%= current_time.min %>">
   </label>
-  <div id="sleep_finished_at_block" class="d-none">
+  <div id="sleep_finished_at_form_block" class="d-none">
     <h3>Finished at</h3>
     <label>Year: <br>
       <input type="number" name="sleep_finished_at[year]" value="<%= current_time.year %>">

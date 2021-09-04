@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_09_04_184413) do
   end
 
   create_table "sleeps", force: :cascade do |t|
-    t.string "start_at"
-    t.string "end_at"
+    t.string "started_at"
+    t.string "finished_at"
     t.bigint "baby_id"
     t.integer "status"
     t.index ["baby_id"], name: "index_sleeps_on_baby_id"

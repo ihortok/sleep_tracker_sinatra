@@ -25,30 +25,30 @@ class SleepsController < ApplicationController
   def sleep_params
     time_zone_offset = TZInfo::Timezone.get(current_user.time_zone).utc_offset
 
-    sleep_start_at = Time.new(
-      params['sleep_start_at']['year'],
-      params['sleep_start_at']['month'],
-      params['sleep_start_at']['day'],
-      params['sleep_start_at']['hour'],
-      params['sleep_start_at']['minute'],
+    sleep_started_at = Time.new(
+      params['sleep_started_at']['year'],
+      params['sleep_started_at']['month'],
+      params['sleep_started_at']['day'],
+      params['sleep_started_at']['hour'],
+      params['sleep_started_at']['minute'],
       0,
       time_zone_offset
     )
 
-    sleep_end_at = Time.new(
-      params['sleep_end_at']['year'],
-      params['sleep_end_at']['month'],
-      params['sleep_end_at']['day'],
-      params['sleep_end_at']['hour'],
-      params['sleep_end_at']['minute'],
+    sleep_finished_at = Time.new(
+      params['sleep_finished_at']['year'],
+      params['sleep_finished_at']['month'],
+      params['sleep_finished_at']['day'],
+      params['sleep_finished_at']['hour'],
+      params['sleep_finished_at']['minute'],
       0,
       time_zone_offset
     )
 
     {
       baby: current_user.babies.first,
-      start_at: sleep_start_at,
-      end_at: sleep_end_at
+      started_at: sleep_started_at,
+      finished_at: sleep_finished_at
     }
   end
 end
