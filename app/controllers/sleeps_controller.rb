@@ -35,20 +35,29 @@ class SleepsController < ApplicationController
       time_zone_offset
     )
 
-    sleep_finished_at = Time.new(
-      params['sleep_finished_at']['year'],
-      params['sleep_finished_at']['month'],
-      params['sleep_finished_at']['day'],
-      params['sleep_finished_at']['hour'],
-      params['sleep_finished_at']['minute'],
-      0,
-      time_zone_offset
-    )
+    finished_at_hour = params['sleep_finished_at']['hour']
+    finished_at_minute = params['sleep_finished_at']['minute']
+
+    if finished_at_hour.present? && finished_at_minute.present?
+      status = :finished
+      sleep_finished_at = Time.new(
+        params['sleep_finished_at']['year'],
+        params['sleep_finished_at']['month'],
+        params['sleep_finished_at']['day'],
+        finished_at_hour,
+        finished_at_minute,
+        0,
+        time_zone_offset
+      )
+    else
+      status = :running
+    end
 
     {
-      baby: current_user.babies.first,
+      baby: current_user.baby,
       started_at: sleep_started_at,
-      finished_at: sleep_finished_at
+      finished_at: sleep_finished_at,
+      status: status
     }
   end
 end
