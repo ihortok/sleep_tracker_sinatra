@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_03_213035) do
+ActiveRecord::Schema.define(version: 2021_09_04_184413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_213035) do
     t.string "start_at"
     t.string "end_at"
     t.bigint "baby_id"
+    t.integer "status"
     t.index ["baby_id"], name: "index_sleeps_on_baby_id"
   end
 
