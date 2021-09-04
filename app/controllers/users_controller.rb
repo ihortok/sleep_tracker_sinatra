@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect '/dashboard'
     else
-      erb :'/users/sign_in.html', locals: { message: 'Email or password is wrong. Please try again.' }
+      erb :'/users/sign_in.html', layout: :'layout.html', locals: { message: 'Email or password is wrong. Please try again.' }
     end
   end
 

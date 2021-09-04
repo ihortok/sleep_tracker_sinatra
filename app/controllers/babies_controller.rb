@@ -5,7 +5,7 @@ class BabiesController < ApplicationController
   get '/babies/new' do
     redirect '/users/sign_in' unless logged_in?
 
-    redirect '/dashboard' if current_user.babies.count.positive?
+    redirect '/dashboard' if current_user.baby.present?
 
     erb :'babies/new.html', layout: :'layout.html'
   end
@@ -13,7 +13,7 @@ class BabiesController < ApplicationController
   post '/babies/create' do
     redirect '/users/sign_in' unless logged_in?
 
-    redirect '/dashboard' if current_user.babies.count.positive?
+    redirect '/dashboard' if current_user.baby.present?
 
     baby = Baby.new(params.merge(user: current_user))
 

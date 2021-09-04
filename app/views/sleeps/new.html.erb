@@ -1,0 +1,6 @@
+<% if @running_sleep.present? %>
+  <%= erb :'sleeps/forms/finish_sleep.html' %>
+<% else %>
+  <button id="set_sleep_finished_at">Set sleep finish</button>
+  <%= erb :'sleeps/forms/start_sleep.html' %>
+<% end %>

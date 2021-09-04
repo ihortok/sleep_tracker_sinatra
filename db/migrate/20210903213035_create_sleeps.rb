@@ -1,8 +1,8 @@
 class CreateSleeps < ActiveRecord::Migration[6.1]
   def change
     create_table :sleeps do |t|
-      t.string :start_at
-      t.string :end_at
+      t.string :started_at
+      t.string :finished_at
       t.references :baby
     end
   end
