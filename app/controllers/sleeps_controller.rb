@@ -5,6 +5,8 @@ class SleepsController < ApplicationController
   get '/sleeps/new' do
     redirect '/users/sign_in' unless logged_in?
 
+    redirect '/dashboard' unless current_user.baby.present?
+
     set_running_sleep
 
     erb :'sleeps/new.html', layout: :'layout.html'

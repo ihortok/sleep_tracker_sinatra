@@ -1,3 +1,7 @@
 <h1>Dashboard</h1>
 
-<a href="/sleeps/new">Srart sleep</a>
+<% if current_user.baby.present? %>
+  <a href="/sleeps/new">Srart sleep</a>
+<% else%>
+  <a href="/babies/new">Add baby</a>
+<% end %>
