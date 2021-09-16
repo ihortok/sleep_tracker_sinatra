@@ -10,9 +10,13 @@ gem 'capistrano-passenger'
 gem 'capistrano-rbenv'
 gem 'dotenv'
 gem 'pg'
-gem 'pry'
 gem 'puma'
 gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'tzinfo'
+
+group :development, :test do
+  gem 'faker'
+  gem 'pry'
+end
