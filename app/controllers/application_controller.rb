@@ -15,12 +15,6 @@ class ApplicationController < Sinatra::Base
     redirect '/users/sign_in'
   end
 
-  get '/dashboard' do
-    redirect '/users/sign_in' and return unless logged_in?
-
-    erb :'dashboard.html', layout: :'layout.html'
-  end
-
   helpers do
     def logged_in?
       !!current_user
