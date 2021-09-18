@@ -43,7 +43,7 @@ unless baby.sleeps.any?
     sleep_started_at = (sleep_date + 1.day).change({ hour: 23 })
     baby.sleeps.create!(
       started_at: sleep_started_at,
-      finished_at: sleep_started_at + 8,
+      finished_at: sleep_started_at + 8.hours,
       status: :finished
     )
     sleep_date += 1.day
@@ -56,13 +56,13 @@ unless baby.sleeps.any?
     sleep_started_at = (sleep_date + 1.day).change({ hour: 10 })
     baby.sleeps.create!(
       started_at: sleep_started_at,
-      finished_at: sleep_started_at + 2,
+      finished_at: sleep_started_at + 2.hours,
       status: :finished
     )
     sleep_started_at = (sleep_date + 1.day).change({ hour: 15 })
     baby.sleeps.create!(
       started_at: sleep_started_at,
-      finished_at: sleep_started_at + 2,
+      finished_at: sleep_started_at + 2.hours,
       status: :finished
     )
     sleep_date += 1.day
