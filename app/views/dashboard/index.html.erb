@@ -1,5 +1,14 @@
 <h1>Dashboard</h1>
 
+<% @sleeps.each do |day, sleeps| %>
+  <h2><%= day %></h2>
+  <ul>
+    <% sleeps.each do |sleep| %>
+      <li>Srart: <%= sleep.started_at %>, Finish: <%= sleep.finished_at %></li>
+    <% end  %>
+  </ul>
+<% end  %>
+
 <ul class="sleeps-char">
   <li class="sleeps-char-item">
   </li>

@@ -1,1 +1,1 @@
-.d-none{display:none}
+.d-none{display:none}.sleeps-char{list-style:none;padding:0;display:grid;grid-template-columns:repeat(7, 1fr);grid-column-gap:15px}.sleeps-char-item{height:360px;background-color:#ccc}
