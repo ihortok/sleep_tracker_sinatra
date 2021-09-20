@@ -35,12 +35,12 @@ end
 baby = user.baby
 
 unless baby.sleeps.any?
-  current_date = Time.current
-  sleep_date = baby.date_of_birth
+  current_date = Time.current - 1.day
+  sleep_date = baby.date_of_birth + 1.day
 
   # seed night sleeps
   while current_date > sleep_date
-    sleep_started_at = (sleep_date + 1.day).change({ hour: 23 })
+    sleep_started_at = sleep_date.change({ hour: 23 })
     baby.sleeps.create!(
       started_at: sleep_started_at,
       finished_at: sleep_started_at + 8.hours,
@@ -49,17 +49,17 @@ unless baby.sleeps.any?
     sleep_date += 1.day
   end
 
-  sleep_date = baby.date_of_birth
+  sleep_date = baby.date_of_birth + 1.day
 
   # seed daytime sleep
   while current_date > sleep_date
-    sleep_started_at = (sleep_date + 1.day).change({ hour: 10 })
+    sleep_started_at = sleep_date.change({ hour: 10 })
     baby.sleeps.create!(
       started_at: sleep_started_at,
       finished_at: sleep_started_at + 2.hours,
       status: :finished
     )
-    sleep_started_at = (sleep_date + 1.day).change({ hour: 15 })
+    sleep_started_at = sleep_date.change({ hour: 15 })
     baby.sleeps.create!(
       started_at: sleep_started_at,
       finished_at: sleep_started_at + 2.hours,
