@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2021_09_06_203038) do
     t.string "gender"
     t.datetime "date_of_birth"
     t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "night_sleep_start"
     t.integer "night_sleep_finish"
     t.index ["user_id"], name: "index_babies_on_user_id"
@@ -30,13 +32,16 @@ ActiveRecord::Schema.define(version: 2021_09_06_203038) do
     t.integer "height"
     t.datetime "measurement_date"
     t.bigint "baby_id"
+    t.datetime "created_at", precision: 6, null: false
     t.index ["baby_id"], name: "index_baby_params_on_baby_id"
   end
 
   create_table "sleeps", force: :cascade do |t|
-    t.string "started_at"
-    t.string "finished_at"
+    t.datetime "started_at"
+    t.datetime "finished_at"
     t.bigint "baby_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "status"
     t.index ["baby_id"], name: "index_sleeps_on_baby_id"
   end
@@ -45,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_09_06_203038) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "country"
     t.string "time_zone"
   end

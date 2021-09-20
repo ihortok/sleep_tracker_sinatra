@@ -5,6 +5,8 @@ class CreateBabies < ActiveRecord::Migration[6.1]
       t.string :gender
       t.datetime :date_of_birth
       t.references :user
+
+      t.timestamps
     end
   end
 end
