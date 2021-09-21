@@ -40,10 +40,10 @@ unless baby.sleeps.any?
 
   # seed night sleeps
   while current_date > sleep_date
-    sleep_started_at = sleep_date.change({ hour: 23 })
+    sleep_started_at = sleep_date.change({ hour: 23, min: rand(0..59) })
     baby.sleeps.create!(
       started_at: sleep_started_at,
-      finished_at: sleep_started_at + 8.hours,
+      finished_at: sleep_started_at + rand(7..8).hours,
       status: :finished
     )
     sleep_date += 1.day
@@ -53,16 +53,22 @@ unless baby.sleeps.any?
 
   # seed daytime sleep
   while current_date > sleep_date
-    sleep_started_at = sleep_date.change({ hour: 10 })
+    sleep_started_at = sleep_date.change({ hour: rand(8..10), min: rand(0..59) })
     baby.sleeps.create!(
       started_at: sleep_started_at,
       finished_at: sleep_started_at + 2.hours,
       status: :finished
     )
-    sleep_started_at = sleep_date.change({ hour: 15 })
+    sleep_started_at = sleep_date.change({ hour: rand(14..16), min: rand(0..59) })
     baby.sleeps.create!(
       started_at: sleep_started_at,
       finished_at: sleep_started_at + 2.hours,
+      status: :finished
+    )
+    sleep_started_at = sleep_date.change({ hour: 20, min: rand(0..59) })
+    baby.sleeps.create!(
+      started_at: sleep_started_at,
+      finished_at: sleep_started_at + 1.hours,
       status: :finished
     )
     sleep_date += 1.day
