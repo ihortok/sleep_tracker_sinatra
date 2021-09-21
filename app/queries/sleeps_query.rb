@@ -2,17 +2,18 @@
 
 # Sleeps query
 class SleepsQuery
-  attr_reader :sleeps
+  attr_reader :baby, :sleeps
 
   def initialize(baby)
+    @baby = baby
     @sleeps = Sleep.where(baby: baby)
   end
 
-  def all_during_week_before(date)
+  def all_during_week_before(datetime)
     sleeps_hash = {}
 
     7.times do |i|
-      day = date - i.days
+      day = datetime - i.days
       sleeps_hash[(day).strftime('%Y-%m-%d')] = all_during(day)
     end
 
@@ -21,15 +22,15 @@ class SleepsQuery
 
   private
 
-  def all_during(date)
-    date_start = date.beginning_of_day
-    date_end = date.end_of_day
+  def all_during(day)
+    date_start = day.change({ hour: baby.night_sleep_finish })
+    date_end = date_start + 1.day
 
     sleeps.where(
       "started_at >= '#{date_start}'"\
       " AND started_at <= '#{date_end}'"\
       " OR finished_at >= '#{date_start}'"\
       " AND finished_at <= '#{date_end}'"
-    )
+    ).order(:started_at)
   end
 end
