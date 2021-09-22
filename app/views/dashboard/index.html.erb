@@ -1,5 +1,20 @@
 <h1>Dashboard</h1>
 
+<ul id="sleeps-char" class="sleeps-char" data-wake-up-hour=<%= current_user.baby.night_sleep_finish %>>
+  <% days = 6 %>
+  <% date_today = Time.now.in_time_zone(User.first.time_zone).to_date %>
+  <% 7.times do |i| %>
+    <% day = (date_today - (days - i).days).to_s %>
+    <li class="sleeps-char-item" data-day=<%= day %>>
+      <% @sleeps[day].each do |sleep| %>
+        <span class="activity activity-sleep"
+              data-sleep-start="<%= sleep.started_at.strftime('%H:%M') if sleep.started_at.to_date.to_s == day %>"
+              data-sleep-finish="<%= sleep.finished_at.strftime('%H:%M') if sleep.finished_at.to_date.to_s == day %>"></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 <% if current_user.baby.present? %>
   <a href="/sleeps/new">Srart sleep</a>
 <% else%>

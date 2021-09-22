@@ -1,9 +1,11 @@
 class CreateSleeps < ActiveRecord::Migration[6.1]
   def change
     create_table :sleeps do |t|
-      t.string :started_at
-      t.string :finished_at
+      t.datetime :started_at
+      t.datetime :finished_at
       t.references :baby
+
+      t.timestamps
     end
   end
 end
