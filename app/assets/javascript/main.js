@@ -48,7 +48,7 @@ for (i = 0; i < 7; i++) {
     continue;
   }
 
-  for (j = 1; j < sleeps_char_item.children.length; j++) {
+  for (j = 0; j < sleeps_char_item.children.length; j++) {
     let activity = sleeps_char_item.children[j],
         activityStart = activity.getAttribute('data-sleep-start').split(':'),
         activityFinish = activity.getAttribute('data-sleep-finish').split(':'),
@@ -57,7 +57,21 @@ for (i = 0; i < 7; i++) {
         activityFinishHour = parseInt(activityFinish[0]),
         activityFinishMin = parseInt(activityFinish[1]);
 
-    activity.style.bottom = `${((activityStartHour - dataWakeUpHour) * 15) + Math.ceil(activityStartMin/15)}px`
-    activity.style.height = `${((activityFinishHour - activityStartHour) * 15) + Math.ceil(activityFinishMin/15)}px`
+    adaptedActivityStartHour = activityStartHour >= dataWakeUpHour ? activityStartHour - dataWakeUpHour : activityStartHour - dataWakeUpHour + 24
+    adaptedActivityFinishHour = activityFinishHour >= dataWakeUpHour ? activityFinishHour - dataWakeUpHour : activityFinishHour - dataWakeUpHour + 24
+
+    if (activityStart[0] !== '') {
+      activity.style.bottom = `${((adaptedActivityStartHour) * 15) + Math.ceil(activityStartMin/15)}px`
+    }
+
+    if (activityFinish[0] !== '') {
+      if (activityStart[0] !== '') {
+        activity.style.height = `${((adaptedActivityFinishHour - adaptedActivityStartHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
+      } else {
+        activity.style.height = `${((adaptedActivityFinishHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
+      }
+    } else {
+      activity.style.top = 0
+    }
   }
 }
