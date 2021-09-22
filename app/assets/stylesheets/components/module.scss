@@ -8,5 +8,17 @@
   &-item {
     height: 360px;
     background-color: $grey;
+    position: relative;
+    
+    .activity {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+
+      &.activity-sleep {
+        background-color: $orange;
+      }
+    }
   }
 }
