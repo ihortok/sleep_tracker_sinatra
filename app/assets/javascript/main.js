@@ -1,3 +1,5 @@
+/* ------------ base ------------ */
+
 function getById(id) {
   return document.getElementById(id);
 }
@@ -5,6 +7,14 @@ function getById(id) {
 function getByClass(class_name, index = 0) {
   return document.getElementsByClassName(class_name)[index];
 }
+
+/* ------------ container height ------------ */
+
+let container = getById("container");
+
+container.style.height = `${window.innerHeight}px`;
+
+/* ------------ sleep finish form ------------ */
 
 let setSleepFinishedAt = getById('set_sleep_finished_at');
 let sleepFinishedAtFormBlock = getById('sleep_finished_at_form_block');

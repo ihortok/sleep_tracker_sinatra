@@ -1,15 +1,19 @@
-<form action="/users/sign_in" method="post">
-  <label>
-    Email:
-    <br>
-    <input type="email" name="email">
-  </label>
-  <br>
-  <label>
-    Password:
-    <br>
-    <input type="password" name="password">
-  </label>
-  <br>
-  <input type="submit" value="Sign in">
-<form>
+<div class="form">
+  <form action="/users/sign_in" method="post">
+    <div class="form-field">
+      <label>
+        <span>Email:</span>
+        <input type="email" name="email">
+      </label>
+    </div>
+    <div class="form-field">
+      <label>
+        <span>Password:</span>
+        <input type="password" name="password">
+      </label>
+    </div>
+    <div class="form-actions">
+      <button class="btn form-submit" type="submit">Sign in</button>
+    </div>
+  </form>
+</div>
