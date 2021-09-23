@@ -23,5 +23,9 @@ class ApplicationController < Sinatra::Base
     def current_user
       @user = User.find_by(id: session[:user_id])
     end
+
+    def user_time_zone
+      current_user.time_zone
+    end
   end
 end

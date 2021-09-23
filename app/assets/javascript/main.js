@@ -60,12 +60,12 @@ for (i = 0; i < 7; i++) {
     adaptedActivityStartHour = activityStartHour >= dataWakeUpHour ? activityStartHour - dataWakeUpHour : activityStartHour - dataWakeUpHour + 24
     adaptedActivityFinishHour = activityFinishHour >= dataWakeUpHour ? activityFinishHour - dataWakeUpHour : activityFinishHour - dataWakeUpHour + 24
 
-    if (activityStart[0] !== '') {
+    if (activityStart[0].trim() !== '') {
       activity.style.bottom = `${((adaptedActivityStartHour) * 15) + Math.ceil(activityStartMin/15)}px`
     }
 
-    if (activityFinish[0] !== '') {
-      if (activityStart[0] !== '') {
+    if (activityFinish[0].trim() !== '') {
+      if (activityStart[0].trim() !== '') {
         activity.style.height = `${((adaptedActivityFinishHour - adaptedActivityStartHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
       } else {
         activity.style.height = `${((adaptedActivityFinishHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`

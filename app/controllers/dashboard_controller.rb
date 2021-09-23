@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
     redirect '/users/sign_in' unless logged_in?
 
     @sleeps = SleepsQuery.new(current_user.baby).all_during_week_before(
-      Time.current.localtime(current_user.time_zone_offset)
+      Time.current.in_time_zone(user_time_zone)
     )
 
     erb :'dashboard/index.html', layout: :'layout.html'

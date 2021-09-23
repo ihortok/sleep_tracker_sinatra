@@ -35,8 +35,8 @@ end
 baby = user.baby
 
 unless baby.sleeps.any?
-  current_date = Time.current - 1.day
-  sleep_date = baby.date_of_birth + 1.day
+  current_date = Time.current.in_time_zone(user.time_zone) - 1.day
+  sleep_date = baby.date_of_birth.in_time_zone(user.time_zone) + 1.day
 
   # seed night sleeps
   while current_date > sleep_date
@@ -49,7 +49,7 @@ unless baby.sleeps.any?
     sleep_date += 1.day
   end
 
-  sleep_date = baby.date_of_birth + 1.day
+  sleep_date = baby.date_of_birth.in_time_zone(user.time_zone) + 1.day
 
   # seed daytime sleep
   while current_date > sleep_date

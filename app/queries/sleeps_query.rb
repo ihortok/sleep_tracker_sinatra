@@ -23,7 +23,7 @@ class SleepsQuery
   private
 
   def all_during(day)
-    date_start = day.change({ hour: baby.night_sleep_finish })
+    date_start = day.change({ hour: baby.night_sleep_finish }).utc
     date_end = date_start + 1.day
 
     sleeps.where(
