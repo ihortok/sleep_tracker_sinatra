@@ -1,0 +1,27 @@
+/* ------------ general ------------ */ 
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 20px;
+  font-family: 'Roboto';
+}
+
+.container {
+  max-width: 1400px;
+  padding: 15px;
+  margin: auto;
+  position: relative;
+  box-sizing: border-box;
+
+  &.app-container {
+    height: 100vh;
+    overflow-x: auto;
+  }
+}
+
+.d-none {
+  display: none;
+}

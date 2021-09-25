@@ -1,11 +1,13 @@
-<header>
+<header class="header">
   <% if logged_in? %>
     <nav>
-      <a href="/dashboard">Dashboard</a>
+      <a href="/dashboard">
+        <img src="/images/home.png">
+      </a>
     </nav>
     <form action="/users/sign_out" method="post">
       <button type="submit" >
-        Sign out
+        <img src="/images/power.png">
       </button>
     </form>
   <% end %>

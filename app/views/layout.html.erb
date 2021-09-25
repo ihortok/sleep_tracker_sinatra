@@ -17,13 +17,16 @@
 </head>
 <body>
 
-  <%= erb :'_header.html' %>
-
-  <% unless locals.empty? %>
-    <%= message %>
-  <% end %>
-
-  <%= yield %>
+  <div id="container" class="container app-container">
+    <%= erb :'_header.html' %>
+    <div class="content">
+      <% unless locals.empty? %>
+        <%= message %>
+      <% end %>
+      <%= yield %>
+    </div>
+    <%= erb :'_footer.html' %>
+  </div>
 
   <script src="/js/main.min.js?ver=1.0.0"></script>
 
