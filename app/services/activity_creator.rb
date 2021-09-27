@@ -15,7 +15,13 @@ class ActivityCreator
   end
 
   def call
-    activity_class.constantize.create!(params)
+    activity = activity_class.constantize.new(params)
+
+    if activity.save
+      OpenStruct.new(success?: true)
+    else
+      OpenStruct.new(error: activity.errors.full_messages.join('; '))
+    end
   rescue StandardError => e
     OpenStruct.new(error: e)
   end
