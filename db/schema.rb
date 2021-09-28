@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_195511) do
+ActiveRecord::Schema.define(version: 2021_09_27_200649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2021_09_20_195511) do
     t.bigint "baby_id"
     t.datetime "created_at", precision: 6, null: false
     t.index ["baby_id"], name: "index_baby_params_on_baby_id"
+  end
+
+  create_table "feedings", force: :cascade do |t|
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.bigint "baby_id"
+    t.integer "status"
+    t.integer "breast"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["baby_id"], name: "index_feedings_on_baby_id"
   end
 
   create_table "sleeps", force: :cascade do |t|

@@ -3,9 +3,9 @@
 # ActivityCreator service
 class ActivityCreator
   attr_reader :activity_class, :started_at_param, :finished_at_param,
-              :other_params, :time_zone
+              :other_params, :time_zone, :time_zone_offset
 
-  def initialize(activity_class, started_at_param, finished_at_param, other_params, time_zone)
+  def initialize(activity_class:, started_at_param:, finished_at_param:, other_params:, time_zone:)
     @activity_class = activity_class
     @started_at_param = started_at_param
     @finished_at_param = finished_at_param
@@ -41,40 +41,36 @@ class ActivityCreator
   end
 
   def started_at
-    started_at_hash = started_at_param['started_at']
-
     Time.new(
-      started_at_hash['year'] || time_current.year,
-      started_at_hash['month'] || time_current.month,
-      started_at_hash['day'] || time_current.day,
-      started_at_hash['hour'] || time_current.hour,
-      started_at_hash['minute'] || time_current.min,
+      started_at_param['year'] || time_current.year,
+      started_at_param['month'] || time_current.month,
+      started_at_param['day'] || time_current.day,
+      started_at_param['hour'] || time_current.hour,
+      started_at_param['minute'] || time_current.min,
       0,
       time_zone_offset
     )
   end
 
   def finished_at
-    finished_at_hash = finished_at_param['finished_at']
+    finished_at_hour = finished_at_param['hour']
 
-    finished_at_hour = finished_at_hash['hour']
-
-    return unless finished_at_hour.present?
+    return if finished_at_hour.empty?
 
     Time.new(
-      finished_at_hash['year'] || time_current.year,
-      finished_at_hash['month'] || time_current.month,
-      finished_at_hash['day'] || time_current.day,
-      finished_at_hash['hour'] || time_current.hour,
-      finished_at_hash['minute'] || time_current.min,
+      finished_at_param['year'] || time_current.year,
+      finished_at_param['month'] || time_current.month,
+      finished_at_param['day'] || time_current.day,
+      finished_at_param['hour'] || time_current.hour,
+      finished_at_param['minute'] || time_current.min,
       0,
       time_zone_offset
     )
   end
 
   def status
-    return :finished if finished_at_param['finished_at']['hour']
+    return :running if finished_at_param['hour'].empty?
 
-    :running
+    :finished
   end
 end

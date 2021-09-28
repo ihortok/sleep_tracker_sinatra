@@ -1,0 +1,6 @@
+<% if @running_feeding.present? %>
+  <%= erb :'shared/activities/forms/finished_at.html', locals: { action: :'/feedings/finish' } %>
+<% else %>
+  <button id="set_activity_finished_at">Set feeding finish</button>
+  <%= erb :'shared/activities/forms/started_at.html', locals: { action: :'/feedings/create' } %>
+<% end %>
