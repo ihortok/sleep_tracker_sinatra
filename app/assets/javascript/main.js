@@ -14,35 +14,35 @@ let container = getById("container");
 
 container.style.height = `${window.innerHeight}px`;
 
-/* ------------ sleep finish form ------------ */
+/* ------------ activity finish form ------------ */
 
-let setSleepFinishedAt = getById('set_sleep_finished_at');
-let sleepFinishedAtFormBlock = getById('sleep_finished_at_form_block');
-let sleepFinishedAtHour = getById('sleep_finished_at_hour');
-let sleepFinishedAtMinute = getById('sleep_finished_at_minute');
+let setActivityFinishedAt = getById('set_activity_finished_at');
+let activityFinishedAtFormBlock = getById('activity_finished_at_form_block');
+let activityFinishedAtHour = getById('activity_finished_at_hour');
+let activityFinishedAtMinute = getById('activity_finished_at_minute');
 
-function setSleepFinishedAtedAtBlockFields() {
+function setActivityFinishedAtedAtBlockFields() {
   let timeCurrent = new Date(Date.now());
-  sleepFinishedAtHour.setAttribute('value', timeCurrent.getHours());
-  sleepFinishedAtMinute.setAttribute('value', timeCurrent.getMinutes());
+  activityFinishedAtHour.setAttribute('value', timeCurrent.getHours());
+  activityFinishedAtMinute.setAttribute('value', timeCurrent.getMinutes());
 }
 
-function resetSleepFinishedAtedAtBlockFields() {
-  sleepFinishedAtHour.removeAttribute('value');
-  sleepFinishedAtMinute.removeAttribute('value');
+function resetActivityFinishedAtedAtBlockFields() {
+  activityFinishedAtHour.removeAttribute('value');
+  activityFinishedAtMinute.removeAttribute('value');
 }
 
-if (setSleepFinishedAt !== null) {
-  setSleepFinishedAt.onclick = () => {
-    sleepFinishedAtFormBlock.classList.toggle('d-none');
-    setSleepFinishedAt.classList.toggle('active');
+if (setActivityFinishedAt !== null) {
+  setActivityFinishedAt.onclick = () => {
+    activityFinishedAtFormBlock.classList.toggle('d-none');
+    setActivityFinishedAt.classList.toggle('active');
 
-    if (setSleepFinishedAt.classList.contains('active')) {
-      setSleepFinishedAtedAtBlockFields();
-      setSleepFinishedAt.innerHTML = 'Reset sleep finish';
+    if (setActivityFinishedAt.classList.contains('active')) {
+      setActivityFinishedAtedAtBlockFields();
+      setActivityFinishedAt.innerHTML = 'Reset activity finish';
     } else {
-      resetSleepFinishedAtedAtBlockFields();
-      setSleepFinishedAt.innerHTML = 'Set sleep finish';
+      resetActivityFinishedAtedAtBlockFields();
+      setActivityFinishedAt.innerHTML = 'Set activity finish';
     }
   }
 }

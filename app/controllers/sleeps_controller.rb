@@ -36,11 +36,11 @@ class SleepsController < ApplicationController
     redirect '/sleeps/new' unless @running_sleep
 
     sleep_finished_at = Time.new(
-      params['sleep_finished_at']['year'],
-      params['sleep_finished_at']['month'],
-      params['sleep_finished_at']['day'],
-      params['sleep_finished_at']['hour'],
-      params['sleep_finished_at']['minute'],
+      params['activity_finished_at']['year'],
+      params['activity_finished_at']['month'],
+      params['activity_finished_at']['day'],
+      params['activity_finished_at']['hour'],
+      params['activity_finished_at']['minute'],
       0,
       time_zone_offset
     )
@@ -56,24 +56,24 @@ class SleepsController < ApplicationController
 
   def sleep_params
     sleep_started_at = Time.new(
-      params['sleep_started_at']['year'],
-      params['sleep_started_at']['month'],
-      params['sleep_started_at']['day'],
-      params['sleep_started_at']['hour'],
-      params['sleep_started_at']['minute'],
+      params['activity_started_at']['year'],
+      params['activity_started_at']['month'],
+      params['activity_started_at']['day'],
+      params['activity_started_at']['hour'],
+      params['activity_started_at']['minute'],
       0,
       time_zone_offset
     )
 
-    finished_at_hour = params['sleep_finished_at']['hour']
-    finished_at_minute = params['sleep_finished_at']['minute']
+    finished_at_hour = params['activity_finished_at']['hour']
+    finished_at_minute = params['activity_finished_at']['minute']
 
     if finished_at_hour.present? && finished_at_minute.present?
       status = :finished
       sleep_finished_at = Time.new(
-        params['sleep_finished_at']['year'],
-        params['sleep_finished_at']['month'],
-        params['sleep_finished_at']['day'],
+        params['activity_finished_at']['year'],
+        params['activity_finished_at']['month'],
+        params['activity_finished_at']['day'],
         finished_at_hour,
         finished_at_minute,
         0,
