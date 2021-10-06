@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_200649) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "country"
     t.string "time_zone"
-    t.string "time_zone_offset"
   end
 
 end
