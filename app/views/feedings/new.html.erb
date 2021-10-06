@@ -1,13 +1,13 @@
-<% if @running_sleep.present? %>
-  <form action="/sleeps/finish" method="post">
+<% if @running_feeding.present? %>
+  <form action="/feedings/finish" method="post">
     <input type="submit" value="Finish">
     <%= erb :'shared/activities/form_partials/finished_at.html' %>
     <br>
     <input type="submit" value="Finish">
   </form>
 <% else %>
-  <button id="set_activity_finished_at">Set sleep finish</button>
-  <form action="/sleeps/create" method="post">
+  <button id="set_activity_finished_at">Set feeding finish</button>
+  <form action="/feedings/create" method="post">
     <%= erb :'shared/activities/form_partials/started_at.html' %>
     <br>
     <input type="submit" value="Start">
