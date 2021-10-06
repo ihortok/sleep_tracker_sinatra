@@ -1,6 +1,15 @@
 <% if @running_feeding.present? %>
-  <%= erb :'shared/activities/forms/finished_at.html', locals: { action: :'/feedings/finish' } %>
+  <form action="/feedings/finish" method="post">
+    <input type="submit" value="Finish">
+    <%= erb :'shared/activities/form_partials/finished_at.html' %>
+    <br>
+    <input type="submit" value="Finish">
+  </form>
 <% else %>
   <button id="set_activity_finished_at">Set feeding finish</button>
-  <%= erb :'shared/activities/forms/started_at.html', locals: { action: :'/feedings/create' } %>
+  <form action="/feedings/create" method="post">
+    <%= erb :'shared/activities/form_partials/started_at.html' %>
+    <br>
+    <input type="submit" value="Start">
+  </form>
 <% end %>

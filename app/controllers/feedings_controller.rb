@@ -33,7 +33,7 @@ class FeedingsController < ApplicationController
 
     result = ActivityTerminator.new(
       running_feeding,
-      params[:finished_at],
+      params[:activity_finished_at],
       current_user.time_zone
     ).call
 
@@ -55,7 +55,7 @@ class FeedingsController < ApplicationController
       activity_class: 'Feeding',
       started_at_param: params[:activity_started_at],
       finished_at_param: params[:activity_finished_at],
-      other_params: params.except('activity_started_at', 'activity_finished_at'),
+      other_params: params.except('activity_started_at', 'activity_finished_at').merge(baby_id: current_user.baby.id),
       time_zone: current_user.time_zone
     }
   end

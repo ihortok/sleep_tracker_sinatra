@@ -1,6 +1,15 @@
 <% if @running_sleep.present? %>
-  <%= erb :'shared/activities/forms/finished_at.html', locals: { action: :'/sleeps/finish' } %>
+  <form action="/sleeps/finish" method="post">
+    <input type="submit" value="Finish">
+    <%= erb :'shared/activities/form_partials/finished_at.html' %>
+    <br>
+    <input type="submit" value="Finish">
+  </form>
 <% else %>
   <button id="set_activity_finished_at">Set sleep finish</button>
-  <%= erb :'shared/activities/forms/started_at.html', locals: { action: :'/sleeps/create' } %>
+  <form action="/sleeps/create" method="post">
+    <%= erb :'shared/activities/form_partials/started_at.html' %>
+    <br>
+    <input type="submit" value="Start">
+  </form>
 <% end %>
