@@ -47,25 +47,25 @@ if (setActivityFinishedAt !== null) {
   }
 }
 
-/* ------------ sleeps-char ------------ */
+/* ------------ activities-char ------------ */
 
 
-let sleepsChar = getById('sleeps-char');
+let activitiesChar = getById('activities-char');
 
-if (sleepsChar !== null) {
-  let dataWakeUpHour = sleepsChar.getAttribute('data-wake-up-hour');
+if (activitiesChar !== null) {
+  let dataWakeUpHour = activitiesChar.getAttribute('data-wake-up-hour');
 
   for (i = 0; i < 7; i++) {
-    let sleeps_char_item = getByClass('sleeps-char-item', i);
+    let activities_char_item = getByClass('activities-char-item', i);
 
-    if (sleeps_char_item.children.length === 0) {
+    if (activities_char_item.children.length === 0) {
       continue;
     }
 
-    for (j = 0; j < sleeps_char_item.children.length; j++) {
-      let activity = sleeps_char_item.children[j],
-          activityStart = activity.getAttribute('data-sleep-start').split(':'),
-          activityFinish = activity.getAttribute('data-sleep-finish').split(':'),
+    for (j = 0; j < activities_char_item.children.length; j++) {
+      let activity = activities_char_item.children[j],
+          activityStart = activity.getAttribute('data-activity-start').split(':'),
+          activityFinish = activity.getAttribute('data-activity-finish').split(':'),
           activityStartHour = parseInt(activityStart[0]),
           activityStartMin = parseInt(activityStart[1]),
           activityFinishHour = parseInt(activityFinish[0]),

@@ -1,18 +1,18 @@
 <h1>Dashboard</h1>
 
-<ul id="sleeps-char" class="sleeps-char" data-wake-up-hour=<%= current_user.baby.night_sleep_finish %>>
+<ul id="activities-char" class="activities-char" data-wake-up-hour=<%= current_user.baby.night_sleep_finish %>>
   <% days = 6 %>
   <% time_now = Time.now.in_time_zone(user_time_zone) %>
   <% date_today = time_now.to_date %>
   <% 7.times do |i| %>
     <% day = (date_today - (days - i).days).to_s %>
-    <li class="sleeps-char-item" data-day=<%= day %>>
+    <li class="activities-char-item" data-day=<%= day %>>
       <% @sleeps[day].each do |sleep| %>
         <% sleep_start = sleep.started_at.in_time_zone(user_time_zone) %>
         <% sleep_finish = sleep.finished_at&.in_time_zone(user_time_zone) %>
         <span class="activity activity-sleep"
-              data-sleep-start="<%= sleep_start.strftime('%H:%M') if sleep.started_at.to_date.to_s == day %>"
-              data-sleep-finish="
+              data-activity-start="<%= sleep_start.strftime('%H:%M') if sleep.started_at.to_date.to_s == day %>"
+              data-activity-finish="
                 <%=
                   if sleep_finish&.to_date&.to_s == day
                     sleep_finish.strftime('%H:%M')
