@@ -21,6 +21,10 @@
       &.activity-sleep {
         background-color: $orange;
       }
+
+      &.activity-feeding {
+        background-color: $green;
+      }
     }
   }
 }
