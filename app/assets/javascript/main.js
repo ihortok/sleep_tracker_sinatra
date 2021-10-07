@@ -74,19 +74,21 @@ if (activitiesChar !== null) {
           activityFinishMin = parseInt(activityFinish[1]);
 
       adaptedActivityStartHour = activityStartHour >= dataWakeUpHour ? activityStartHour - dataWakeUpHour : activityStartHour - dataWakeUpHour + 24
+      adaptedActivityStartMinutes = adaptedActivityStartHour * 60 + activityStartMin
       adaptedActivityFinishHour = activityFinishHour >= dataWakeUpHour ? activityFinishHour - dataWakeUpHour : activityFinishHour - dataWakeUpHour + 24
+      adaptedActivityFinishMinutes = adaptedActivityFinishHour * 60 + activityFinishMin
 
       if (activityStartDay !== 'yesterday') {
-        activity.style.bottom = `${((adaptedActivityStartHour) * 15) + Math.ceil(activityStartMin/15)}px`
+        activity.style.bottom = `${adaptedActivityStartMinutes / 4}px`
       }
 
       if (activityFinish[0].trim() === '' || activityFinishDay === 'tomorrow') {
         activity.style.top = 0;
       } else {
         if (activityStartDay !== 'yesterday') {
-          activity.style.height = `${((adaptedActivityFinishHour - adaptedActivityStartHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
+          activity.style.height = `${(adaptedActivityFinishMinutes - adaptedActivityStartMinutes) / 4}px`
         } else {
-          activity.style.height = `${((adaptedActivityFinishHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
+          activity.style.height = `${adaptedActivityFinishMinutes / 4}px`
         }
       }
     }
