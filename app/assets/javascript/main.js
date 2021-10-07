@@ -47,45 +47,49 @@ if (setActivityFinishedAt !== null) {
   }
 }
 
-/* ------------ sleeps-char ------------ */
+/* ------------ activities-char ------------ */
 
 
-let sleepsChar = getById('sleeps-char');
+let activitiesChar = getById('activities-char');
 
-if (sleepsChar !== null) {
-  let dataWakeUpHour = sleepsChar.getAttribute('data-wake-up-hour');
+if (activitiesChar !== null) {
+  let dataWakeUpHour = activitiesChar.getAttribute('data-wake-up-hour');
 
   for (i = 0; i < 7; i++) {
-    let sleeps_char_item = getByClass('sleeps-char-item', i);
+    let activities_char_item = getByClass('activities-char-item', i);
 
-    if (sleeps_char_item.children.length === 0) {
+    if (activities_char_item.children.length === 0) {
       continue;
     }
 
-    for (j = 0; j < sleeps_char_item.children.length; j++) {
-      let activity = sleeps_char_item.children[j],
-          activityStart = activity.getAttribute('data-sleep-start').split(':'),
-          activityFinish = activity.getAttribute('data-sleep-finish').split(':'),
+    for (j = 0; j < activities_char_item.children.length; j++) {
+      let activity = activities_char_item.children[j],
+          activityStartDay = activity.getAttribute('data-activity-start-day'),
+          activityStart = activity.getAttribute('data-activity-start').split(':'),
+          activityFinish = activity.getAttribute('data-activity-finish').split(':'),
+          activityFinishDay = activity.getAttribute('data-activity-finish-day'),
           activityStartHour = parseInt(activityStart[0]),
           activityStartMin = parseInt(activityStart[1]),
           activityFinishHour = parseInt(activityFinish[0]),
           activityFinishMin = parseInt(activityFinish[1]);
 
       adaptedActivityStartHour = activityStartHour >= dataWakeUpHour ? activityStartHour - dataWakeUpHour : activityStartHour - dataWakeUpHour + 24
+      adaptedActivityStartMinutes = adaptedActivityStartHour * 60 + activityStartMin
       adaptedActivityFinishHour = activityFinishHour >= dataWakeUpHour ? activityFinishHour - dataWakeUpHour : activityFinishHour - dataWakeUpHour + 24
+      adaptedActivityFinishMinutes = adaptedActivityFinishHour * 60 + activityFinishMin
 
-      if (activityStart[0].trim() !== '') {
-        activity.style.bottom = `${((adaptedActivityStartHour) * 15) + Math.ceil(activityStartMin/15)}px`
+      if (activityStartDay !== 'yesterday') {
+        activity.style.bottom = `${adaptedActivityStartMinutes / 4}px`
       }
 
-      if (activityFinish[0].trim() !== '') {
-        if (activityStart[0].trim() !== '') {
-          activity.style.height = `${((adaptedActivityFinishHour - adaptedActivityStartHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
-        } else {
-          activity.style.height = `${((adaptedActivityFinishHour) * 15) + Math.ceil(activityFinishMin*15/60)}px`
-        }
+      if (activityFinish[0].trim() === '' || activityFinishDay === 'tomorrow') {
+        activity.style.top = 0;
       } else {
-        activity.style.top = 0
+        if (activityStartDay !== 'yesterday') {
+          activity.style.height = `${(adaptedActivityFinishMinutes - adaptedActivityStartMinutes) / 4}px`
+        } else {
+          activity.style.height = `${adaptedActivityFinishMinutes / 4}px`
+        }
       }
     }
   }

@@ -74,3 +74,19 @@ unless baby.sleeps.any?
     sleep_date += 1.day
   end
 end
+
+unless baby.feedings.any?
+  current_date = Time.current.in_time_zone(user.time_zone) - 4.hours
+  feeding_date = baby.date_of_birth.in_time_zone(user.time_zone) + 4.hours
+
+  # seed night feedings
+  while current_date > feeding_date
+    feeding_started_at = feeding_date.change({ min: rand(0..59) })
+    baby.feedings.create!(
+      started_at: feeding_started_at,
+      finished_at: feeding_started_at + rand(15..45).minutes,
+      status: :finished
+    )
+    feeding_date += rand(2..4).hours
+  end
+end
