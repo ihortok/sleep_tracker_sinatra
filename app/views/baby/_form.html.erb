@@ -1,0 +1,37 @@
+<form action="<%= action %>" method="post">
+  <label>
+    Name:
+    <br>
+    <input type="text" name="name" value="<%= @baby&.name %>">
+  </label>
+  <br>
+  <label>
+    Gender:
+    <br>
+    <select name="gender">
+      <option hidden disabled selected value></option>
+      <option value="G">Girl</option>
+      <option value="B">Boy</option>
+    </select>
+  </label>
+  <br>
+  <label>
+    Date of Birth:
+    <br>
+    <input type="datetime-local" name="date_of_birth">
+  </label>
+  <br>
+  <label>
+    Night sleep start:
+    <br>
+    <input type="number" min="0" max="23" value="22" name="date_of_birth">
+  </label>
+  <br>
+  <label>
+    Night sleep finish:
+    <br>
+    <input type="number" min="0" max="23" value="7" name="date_of_birth">
+  </label>
+  <br>
+  <input type="submit" value="<%= submit_button_text %>">
+<form>

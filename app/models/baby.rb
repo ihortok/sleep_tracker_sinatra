@@ -6,4 +6,6 @@ class Baby < ActiveRecord::Base
   has_many :baby_params
   has_many :sleeps
   has_many :feedings
+
+  enum gender: { girl: 'G', boy: 'B' }
 end

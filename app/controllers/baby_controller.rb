@@ -33,4 +33,26 @@ class BabyController < ApplicationController
       erb :'baby/new.html', locals: { message: 'Something went wrong. Please try again.' }
     end
   end
+
+  get '/baby/edit' do
+    redirect '/users/sign_in' unless logged_in?
+
+    redirect '/baby/new' unless current_user.baby.present?
+
+    @baby = current_user.baby
+
+    erb :'baby/edit.html', layout: :'layout.html'
+  end
+
+  post '/baby/update' do
+    redirect '/users/sign_in' unless logged_in?
+
+    redirect '/baby/new' unless current_user.baby.present?
+
+    if current_user.baby.update(params)
+      redirect '/baby'
+    else
+      erb :'baby/edit.html', locals: { message: 'Something went wrong. Please try again.' }
+    end
+  end
 end
