@@ -1,42 +1,63 @@
-<form action="<%= action %>" enctype="multipart/form-data" method="post">
-  <label>
-    Photo:
-    <br>
-    <input type="file" name="photo">
-  </label>
-  <label>
-    Name:
-    <br>
-    <input type="text" name="name" value="<%= @baby&.name %>">
-  </label>
-  <br>
-  <label>
-    Gender:
-    <br>
-    <select name="gender">
-      <option hidden disabled selected value></option>
-      <option value="G" <%= 'selected' if @baby&.girl? %>>Girl</option>
-      <option value="B" <%= 'selected' if @baby&.boy? %>>Boy</option>
-    </select>
-  </label>
-  <br>
-  <label>
-    Date of Birth:
-    <br>
-    <input type="datetime-local" name="date_of_birth">
-  </label>
-  <br>
-  <label>
-    Night sleep start:
-    <br>
-    <input type="number" min="0" max="23" name="night_sleep_start" value="<%= @baby&.night_sleep_start || 22 %>">
-  </label>
-  <br>
-  <label>
-    Night sleep finish:
-    <br>
-    <input type="number" min="0" max="23" name="night_sleep_finish" value="<%= @baby&.night_sleep_finish || 7 %>">
-  </label>
-  <br>
-  <input type="submit" value="<%= submit_button_text %>">
+<form action="<%= action %>" enctype="multipart/form-data" method="post" class="form">
+  <div class="form-field">
+    <label>
+      Photo:
+      <input type="file" name="photo">
+    </label>
+  </div>
+  <div class="form-field">
+    <label>
+      Name:
+      <input type="text" name="name" value="<%= @baby&.name %>">
+      <% if @baby&.errors && @baby.errors[:name].present? %>
+        <small class="form-errors"><%= @baby.errors[:name].join('; ') %></small>
+      <% end %>
+    </label>
+  </div>
+  <div class="form-field">
+    <label>
+      Gender:
+      <select name="gender">
+        <option hidden disabled selected value></option>
+        <option value="G" <%= 'selected' if @baby&.girl? %>>Girl</option>
+        <option value="B" <%= 'selected' if @baby&.boy? %>>Boy</option>
+      </select>
+      <% if @baby&.errors && @baby.errors[:gender].present? %>
+        <small class="form-errors"><%= @baby.errors[:gender].join('; ') %></small>
+      <% end %>
+    </label>
+  </div>
+  <div class="form-field">
+    <label>
+      Date of Birth:
+      <input type="datetime-local" name="date_of_birth"
+             value="<%= date_formatted_for_datetime_value(@baby&.date_of_birth) %>">
+      <% if @baby&.errors && @baby.errors[:date_of_birth].present? %>
+        <small class="form-errors"><%= @baby.errors[:date_of_birth].join('; ') %></small>
+      <% end %>
+    </label>
+  </div>
+  <div class="form-field">
+    <label>
+      Night sleep start:
+      <input type="number" min="0" max="23" name="night_sleep_start" value="<%= @baby&.night_sleep_start || 22 %>">
+      <% if @baby&.errors && @baby.errors[:night_sleep_start].present? %>
+        <small class="form-errors"><%= @baby.errors[:night_sleep_start].join('; ') %></small>
+      <% end %>
+    </label>
+  </div>
+  <div class="form-field">
+    <label>
+      Night sleep finish:
+      <input type="number" min="0" max="23" name="night_sleep_finish" value="<%= @baby&.night_sleep_finish || 7 %>">
+      <% if @baby&.errors && @baby.errors[:night_sleep_finish].present? %>
+        <small class="form-errors"><%= @baby.errors[:night_sleep_finish].join('; ') %></small>
+      <% end %>
+    </label>
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="form-submit">
+      <%= submit_button_text || 'Submit' %>
+    </button>
+  <div>
 <form>

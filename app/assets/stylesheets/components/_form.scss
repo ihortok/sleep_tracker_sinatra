@@ -1,25 +1,14 @@
 /* ------------ form ------------ */
 
 .form {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   form {
     width: 100%;
   }
-
-  label {
-    display: block;
-  }
   
-  input {
-    box-sizing: border-box;
+  input,
+  select {
+    display: block;
+    box-sizing: border-box; 
     width: 100%;
     margin-top: 2px;
     padding: 10px;
@@ -27,7 +16,7 @@
     border-radius: 5px;
   }
 
-  .form-field {
+  .form-field { 
     display: block;
     width: 100%;
     margin-bottom: 15px;
@@ -42,5 +31,9 @@
     padding: 10px 30px;
     border: 1px solid $grey;
     border-radius: 5px;
+  }
+
+  .form-errors {
+    color: red;
   }
 }
