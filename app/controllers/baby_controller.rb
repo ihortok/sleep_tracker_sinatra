@@ -25,9 +25,11 @@ class BabyController < ApplicationController
 
     redirect '/dashboard' if current_user.baby.present?
 
-    baby = Baby.new(params.merge(user: current_user))
+    baby = Baby.new(baby_params)
 
-    if baby.save
+    if baby.save!
+      ImageUploader.new(id: baby.id, name: baby.name, image: params[:photo]).call if params[:photo]
+
       redirect '/dashboard'
     else
       erb :'baby/new.html', locals: { message: 'Something went wrong. Please try again.' }
@@ -49,10 +51,18 @@ class BabyController < ApplicationController
 
     redirect '/baby/new' unless current_user.baby.present?
 
-    if current_user.baby.update(params)
+    if current_user.baby.update(baby_params)
+      ImageUploader.new(id: current_user.baby.id, name: current_user.baby.name, image: params[:photo]).call if params[:photo]
+
       redirect '/baby'
     else
       erb :'baby/edit.html', locals: { message: 'Something went wrong. Please try again.' }
     end
+  end
+
+  private
+
+  def baby_params
+    params.slice(:name, :gender, :date_of_birth, :night_sleep_start, :night_sleep_finish).merge(user: current_user)
   end
 end

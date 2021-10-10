@@ -1,4 +1,9 @@
-<form action="<%= action %>" method="post">
+<form action="<%= action %>" enctype="multipart/form-data" method="post">
+  <label>
+    Photo:
+    <br>
+    <input type="file" name="photo">
+  </label>
   <label>
     Name:
     <br>
