@@ -10,8 +10,8 @@
     <br>
     <select name="gender">
       <option hidden disabled selected value></option>
-      <option value="G">Girl</option>
-      <option value="B">Boy</option>
+      <option value="G" <%= 'selected' if @baby&.girl? %>>Girl</option>
+      <option value="B" <%= 'selected' if @baby&.boy? %>>Boy</option>
     </select>
   </label>
   <br>
@@ -24,13 +24,13 @@
   <label>
     Night sleep start:
     <br>
-    <input type="number" min="0" max="23" value="22" name="date_of_birth">
+    <input type="number" min="0" max="23" name="night_sleep_start" value="<%= @baby&.night_sleep_start || 22 %>">
   </label>
   <br>
   <label>
     Night sleep finish:
     <br>
-    <input type="number" min="0" max="23" value="7" name="date_of_birth">
+    <input type="number" min="0" max="23" name="night_sleep_finish" value="<%= @baby&.night_sleep_finish || 7 %>">
   </label>
   <br>
   <input type="submit" value="<%= submit_button_text %>">
