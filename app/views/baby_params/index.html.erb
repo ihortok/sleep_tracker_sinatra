@@ -1,0 +1,26 @@
+<h1>Baby parameters</h1>
+
+<% if @baby_params.any? %>
+  <ul>
+    <% @baby_params.each do |baby_param| %>
+      <li>
+        <a href="/baby_params/<%= baby_param.id %>">
+          <div>
+            <img src="<%= baby_param.photo(size: :small) %>">
+          </div>
+          <div>
+            <span><%= baby_param.measurement_date %></span>
+            <div>
+              <span><%= baby_param.weight %></span>
+              <span><%= baby_param.height %></span>
+            </div>
+          </div>
+        </li>
+      </a>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You haven't at any parameters yet</p>
+<% end %> 
+
+<a href="/baby_params/new">Add parameters</a>

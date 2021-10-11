@@ -1,1 +1,24 @@
-<%= @baby.name %>
+<img src="<%= @baby.photo %>">
+
+<table>
+  <tr>
+    <th>Name:</th>
+    <td><%= @baby.name %></td>
+  </tr>
+  <tr>
+    <th>Gender:</th>
+    <td><%= @baby.gender %></td>
+  </tr>
+  <tr>
+    <th>Date of birth:</th>
+    <td><%= @baby.date_of_birth %></td>
+  </tr>
+  <tr>
+    <th>Night sleep start:</th>
+    <td><%= @baby.night_sleep_start %></td>
+  </tr>
+  <tr>
+    <th>Wake up:</th>
+    <td><%= @baby.night_sleep_finish %></td>
+  </tr>
+</table>
