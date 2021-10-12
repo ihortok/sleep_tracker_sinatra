@@ -1,27 +1,30 @@
-/* ------------ general ------------ */ 
-
 html {
   font-size: 16px;
 }
 
 body {
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Roboto';
 }
 
-.container {
-  max-width: 1400px;
-  padding: 15px;
-  margin: auto;
+.content {
   position: relative;
   box-sizing: border-box;
-
-  &.app-container {
-    height: 100vh;
-    overflow-x: auto;
-  }
+  padding: 50px 0;
+  overflow-y: auto;
+  min-height: 500px;
 }
 
-.d-none {
-  display: none;
+.text-center {
+  text-align: center;
+}
+
+.vertically-centered-block {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50px;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
 }

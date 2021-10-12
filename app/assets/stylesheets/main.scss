@@ -1,4 +1,7 @@
+/// Bootstrap
+
 // Required
+@import "~bootstrap/scss/bootstrap";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
@@ -6,5 +9,12 @@
 // Optional
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/card";
+@import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities/api";
+@import "~bootstrap/scss/variables";
+
+/// Custom
+
+@import "base/module";

@@ -10,9 +10,9 @@ function getByClass(class_name, index = 0) {
 
 /* ------------ container height ------------ */
 
-let container = getById("container");
+let content = getByClass("content");
 
-container.style.height = `${window.innerHeight}px`;
+content.style.height = `${window.innerHeight}px`;
 
 /* ------------ activity finish form ------------ */
 
