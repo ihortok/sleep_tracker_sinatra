@@ -1,5 +1,3 @@
-/* ------------ activity char ------------ */
-
 .activities-char {
   list-style: none;
   padding: 0; 
@@ -9,7 +7,7 @@
 
   &-item {
     height: 360px;
-    background-color: $grey;
+    background-color: --bs-gray-300;
     position: relative;
     
     .activity {
@@ -19,11 +17,11 @@
       width: 100%;
 
       &.activity-sleep {
-        background-color: $orange;
+        background-color: --bs-orange;
       }
 
       &.activity-feeding {
-        background-color: $green;
+        background-color: --bs-green;
       }
     }
   }

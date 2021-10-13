@@ -12,7 +12,7 @@ function getByClass(class_name, index = 0) {
 
 let content = getByClass("content");
 
-content.style.height = `${window.innerHeight}px`;
+content.style.height = `${window.innerHeight - 100}px`;
 
 /* ------------ activity finish form ------------ */
 

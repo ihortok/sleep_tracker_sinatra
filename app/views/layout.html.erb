@@ -17,17 +17,15 @@
 </head>
 <body>
 
-  <div class="wrapper">
-    <% if logged_in? %>
-      <%= erb :'_header.html' %>
-    <% end %>
-    <div class="content">
-      <%= yield %>
-    </div>
-    <% if logged_in? %>
-      <%= erb :'_footer.html' %>
-    <% end %>
+  <% if logged_in? %>
+    <%= erb :'_header.html' %>
+  <% end %>
+  <div class="content">
+    <%= yield %>
   </div>
+  <% if logged_in? %>
+    <%= erb :'_footer.html' %>
+  <% end %>
 
   <script src="/js/main.min.js?ver=1.0.0"></script>
 
