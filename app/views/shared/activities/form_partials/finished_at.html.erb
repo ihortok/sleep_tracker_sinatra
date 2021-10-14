@@ -1,21 +1,20 @@
 <% current_time = Time.new.in_time_zone(current_user.time_zone) %>
-<h3>Finished at</h3>
-<label>Year: <br>
-  <input type="number" name="activity_finished_at[year]" value="<%= current_time.year %>">
-</label>
-<br>
-<label>Month: <br>
-  <input type="number" name="activity_finished_at[month]" value="<%= current_time.month %>">
-</label>
-<br>
-<label>Day: <br>
-  <input type="number" name="activity_finished_at[day]" value="<%= current_time.day %>">
-</label>
-<br>
-<label>Hour: <br>
-  <input type="number" name="activity_finished_at[hour]" value="<%= current_time.hour %>">
-</label>
-<br>
-<label>Minute: <br>
-  <input type="number" name="activity_finished_at[minute]" value="<%= current_time.min %>">
-</label>
+
+<h3>Finished at:</h3>
+<div class="form-group d-flex event-timestamps-form">
+  <label>Year: <br>
+    <input class="form-control" type="number" name="activity_finished_at[year]" value="<%= current_time.year %>">
+  </label>
+  <label>Month: <br>
+    <input class="form-control" type="number" name="activity_finished_at[month]" value="<%= current_time.month %>">
+  </label>
+  <label>Day: <br>
+    <input class="form-control" type="number" name="activity_finished_at[day]" value="<%= current_time.day %>">
+  </label>
+  <label>Hour: <br>
+    <input class="form-control" type="number" name="activity_finished_at[hour]" value="<%= current_time.hour %>">
+  </label>
+  <label>Min: <br>
+    <input class="form-control" type="number" name="activity_finished_at[minute]" value="<%= current_time.min %>">
+  </label>
+</div>
