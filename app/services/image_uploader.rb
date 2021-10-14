@@ -5,8 +5,8 @@ require 'mini_magick'
 # ImageUploader service
 class ImageUploader
   IMAGE_SIZES = {
-    big: '250x250',
-    small: '50x50'
+    big: '320x320',
+    small: '60x60'
   }.freeze
 
   def initialize(id:, name:, image:)

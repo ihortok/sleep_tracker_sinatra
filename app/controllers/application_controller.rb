@@ -33,5 +33,11 @@ class ApplicationController < Sinatra::Base
     rescue NoMethodError
       nil
     end
+
+    def date_formatted_for_ui(date)
+      date.strftime('%Y-%m-%d at %H:%M')
+    rescue NoMethodError
+      nil
+    end
   end
 end
