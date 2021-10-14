@@ -1,57 +1,61 @@
-<h1>Dashboard</h1>
+<div class="container">
+  <ul id="activities-char" class="activities-char mb-4" data-wake-up-hour=<%= current_user.baby.night_sleep_finish %>>
+    <% days = 6 %>
+    <% time_now = Time.now.in_time_zone(user_time_zone) %>
+    <% date_today = time_now.to_date %>
+    <% 7.times do |i| %>
+      <% night_sleep_finish = (time_now - (days - i).days).change({ hour: current_user.baby.night_sleep_finish }) %>
+      <% day = (date_today - (days - i).days).to_s %>
+      <li class="activities-char-item" data-day=<%= day %>>
+        <% @activities[:sleeps][day].each do |sleep| %>
+          <% sleep_start = sleep.started_at.in_time_zone(user_time_zone) %>
+          <% sleep_finish = sleep.finished_at&.in_time_zone(user_time_zone) %>
+          <span class="activity activity-sleep"
+                data-activity-start-day="<%= sleep_start < night_sleep_finish ? 'yesterday' : 'today' %>"
+                data-activity-finish-day="<%= (sleep_finish && sleep_finish > (night_sleep_finish + 1.day)) ? 'tomorrow' : 'today' %>"
+                data-activity-start="<%= sleep_start.strftime('%H:%M') if sleep.started_at.to_date.to_s == day %>"
+                data-activity-finish="
+                  <%=
+                    if sleep_finish&.to_date&.to_s == day
+                      sleep_finish.strftime('%H:%M')
+                    elsif sleep_finish&.to_date.nil? && sleep.running?
+                      time_now.strftime('%H:%M')
+                    end
+                  %>
+                ">
+          </span>
+        <% end %>
+        <% @activities[:feedings][day].each do |feeding| %>
+          <% feeding_start = feeding.started_at.in_time_zone(user_time_zone) %>
+          <% feeding_finish = feeding.finished_at&.in_time_zone(user_time_zone) %>
+          <span class="activity activity-feeding"
+                data-activity-start-day="<%= feeding_start < night_sleep_finish ? 'yesterday' : 'today' %>"
+                data-activity-finish-day="<%= (feeding_finish && feeding_finish > (night_sleep_finish + 1.day)) ? 'tomorrow' : 'today' %>"
+                data-activity-start="<%= feeding_start.strftime('%H:%M') %>"
+                data-activity-finish="
+                  <%=
+                    if feeding_finish&.to_date.nil?
+                      time_now.strftime('%H:%M')
+                    else
+                      feeding_finish.strftime('%H:%M')
+                    end
+                  %>
+                "
+                >
+          </span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 
-<ul id="activities-char" class="activities-char" data-wake-up-hour=<%= current_user.baby.night_sleep_finish %>>
-  <% days = 6 %>
-  <% time_now = Time.now.in_time_zone(user_time_zone) %>
-  <% date_today = time_now.to_date %>
-  <% 7.times do |i| %>
-    <% night_sleep_finish = (time_now - (days - i).days).change({ hour: current_user.baby.night_sleep_finish }) %>
-    <% day = (date_today - (days - i).days).to_s %>
-    <li class="activities-char-item" data-day=<%= day %>>
-      <% @activities[:sleeps][day].each do |sleep| %>
-        <% sleep_start = sleep.started_at.in_time_zone(user_time_zone) %>
-        <% sleep_finish = sleep.finished_at&.in_time_zone(user_time_zone) %>
-        <span class="activity activity-sleep"
-              data-activity-start-day="<%= sleep_start < night_sleep_finish ? 'yesterday' : 'today' %>"
-              data-activity-finish-day="<%= (sleep_finish && sleep_finish > (night_sleep_finish + 1.day)) ? 'tomorrow' : 'today' %>"
-              data-activity-start="<%= sleep_start.strftime('%H:%M') if sleep.started_at.to_date.to_s == day %>"
-              data-activity-finish="
-                <%=
-                  if sleep_finish&.to_date&.to_s == day
-                    sleep_finish.strftime('%H:%M')
-                  elsif sleep_finish&.to_date.nil? && sleep.running?
-                    time_now.strftime('%H:%M')
-                  end
-                %>
-              ">
-        </span>
-      <% end %>
-      <% @activities[:feedings][day].each do |feeding| %>
-        <% feeding_start = feeding.started_at.in_time_zone(user_time_zone) %>
-        <% feeding_finish = feeding.finished_at&.in_time_zone(user_time_zone) %>
-        <span class="activity activity-feeding"
-              data-activity-start-day="<%= feeding_start < night_sleep_finish ? 'yesterday' : 'today' %>"
-              data-activity-finish-day="<%= (feeding_finish && feeding_finish > (night_sleep_finish + 1.day)) ? 'tomorrow' : 'today' %>"
-              data-activity-start="<%= feeding_start.strftime('%H:%M') %>"
-              data-activity-finish="
-                <%=
-                  if feeding_finish&.to_date.nil?
-                    time_now.strftime('%H:%M')
-                  else
-                    feeding_finish.strftime('%H:%M')
-                  end
-                %>
-              "
-              >
-        </span>
-      <% end %>
-    </li>
+  <% if current_user.baby.present? %>
+    <div class="d-flex justify-content-center">
+      <div class="btn-group">
+        <a href="/sleeps/new" class="btn btn-teal btn-lg">Srart sleep</a>
+        <a href="/feedings/new" class="btn btn-primary btn-lg">Srart feeding</a>
+      </div>
+    </div>
+  <% else%>
+    <a href="/babies/new">Add baby</a>
   <% end %>
-</ul>
-
-<% if current_user.baby.present? %>
-  <a href="/sleeps/new">Srart sleep</a>
-  <a href="/feedings/new">Srart feeding</a>
-<% else%>
-  <a href="/babies/new">Add baby</a>
-<% end %>
+</div>

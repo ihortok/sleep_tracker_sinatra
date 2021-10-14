@@ -1,0 +1,32 @@
+.footer {
+  bottom: 0;
+}
+
+.nav {
+  display: flex;
+
+  a {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    flex-grow: 1;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: '';
+      height: 100%;
+      width: 2px;
+      position: absolute;
+      top: 0;
+      right: -1px;
+      background-color: var(--bs-gray-300);
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_200649) do
     t.datetime "finished_at"
     t.bigint "baby_id"
     t.integer "status"
-    t.integer "breast"
+    t.string "breast"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["baby_id"], name: "index_feedings_on_baby_id"

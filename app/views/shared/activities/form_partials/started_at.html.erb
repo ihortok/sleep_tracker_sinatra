@@ -1,43 +1,23 @@
 <% current_time = Time.new.in_time_zone(current_user.time_zone) %>
-<h3>Started at</h3>
-<label>Year: <br>
-  <input type="number" name="activity_started_at[year]" value="<%= current_time.year %>">
-</label>
-<br>
-<label>Month: <br>
-  <input type="number" name="activity_started_at[month]" value="<%= current_time.month %>">
-</label>
-<br>
-<label>Day: <br>
-  <input type="number" name="activity_started_at[day]" value="<%= current_time.day %>">
-</label>
-<br>
-<label>Hour: <br>
-  <input type="number" name="activity_started_at[hour]" value="<%= current_time.hour %>">
-</label>
-<br>
-<label>Minute: <br>
-  <input type="number" name="activity_started_at[minute]" value="<%= current_time.min %>">
-</label>
-<div id="activity_finished_at_form_block" class="d-none">
-  <h3>Finished at</h3>
+
+<h3>Started at:</h3>
+<div class="form-group d-flex event-timestamps-form">
   <label>Year: <br>
-    <input type="number" name="activity_finished_at[year]" value="<%= current_time.year %>">
+    <input class="form-control" type="number" name="activity_started_at[year]" value="<%= current_time.year %>">
   </label>
-  <br>
   <label>Month: <br>
-    <input type="number" name="activity_finished_at[month]" value="<%= current_time.month %>">
+    <input class="form-control" type="number" name="activity_started_at[month]" value="<%= current_time.month %>">
   </label>
-  <br>
   <label>Day: <br>
-    <input type="number" name="activity_finished_at[day]" value="<%= current_time.day %>">
+    <input class="form-control" type="number" name="activity_started_at[day]" value="<%= current_time.day %>">
   </label>
-  <br>
   <label>Hour: <br>
-    <input id="activity_finished_at_hour" type="number" name="activity_finished_at[hour]">
+    <input class="form-control" type="number" name="activity_started_at[hour]" value="<%= current_time.hour %>">
   </label>
-  <br>
-  <label>Minute: <br>
-    <input id="activity_finished_at_minute" type="number" name="activity_finished_at[minute]">
+  <label>Min: <br>
+    <input class="form-control" type="number" name="activity_started_at[minute]" value="<%= current_time.min %>">
   </label>
+</div>
+<div id="activity_finished_at_form_block" class="d-none">
+  <%= erb :'shared/activities/form_partials/finished_at.html' %>
 </div>

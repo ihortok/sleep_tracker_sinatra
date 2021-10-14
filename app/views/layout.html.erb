@@ -15,18 +15,17 @@
   <meta name="theme-color" content="#2d2e5f">
   <link rel="stylesheet" href="/css/main.min.css?ver=1.0.0">
 </head>
-<body>
+<body style="background: url('/images/background.jpg') repeat">
 
-  <div id="container" class="container app-container">
+  <% if logged_in? %>
     <%= erb :'_header.html' %>
-    <div class="content">
-      <% unless locals.empty? %>
-        <%= message %>
-      <% end %>
-      <%= yield %>
-    </div>
-    <%= erb :'_footer.html' %>
+  <% end %>
+  <div class="content">
+    <%= yield %>
   </div>
+  <% if logged_in? %>
+    <%= erb :'_footer.html' %>
+  <% end %>
 
   <script src="/js/main.min.js?ver=1.0.0"></script>
 

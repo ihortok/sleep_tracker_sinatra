@@ -1,3 +1,35 @@
-@import 'base/module';
-@import 'components/module';
-@import 'layout/module';
+/// Bootstrap
+
+// Required
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+
+// Optional
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities/api";
+
+/// Fortawesome
+
+$fa-font-path: '../fonts'; 
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+/// Custom
+
+@import "base/module";
+@import "components/module";
+@import "layout/module";
+@import "vendor/module";

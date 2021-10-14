@@ -1,13 +1,8 @@
-<header class="header">
+<header class="header menu d-flex justify-content-end align-items-center">
   <% if logged_in? %>
-    <nav>
-      <a href="/dashboard">
-        <img src="/images/home.png">
-      </a>
-    </nav>
-    <form action="/users/sign_out" method="post">
-      <button type="submit" >
-        <img src="/images/power.png">
+    <form action="/users/sign_out" method="post" class="sign-out">
+      <button type="submit" class="icon">
+        <i class="fas fa-sign-out-alt"></i>
       </button>
     </form>
   <% end %>

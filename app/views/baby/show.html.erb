@@ -1,24 +1,19 @@
-<img src="<%= @baby.photo %>">
-
-<table>
-  <tr>
-    <th>Name:</th>
-    <td><%= @baby.name %></td>
-  </tr>
-  <tr>
-    <th>Gender:</th>
-    <td><%= @baby.gender %></td>
-  </tr>
-  <tr>
-    <th>Date of birth:</th>
-    <td><%= @baby.date_of_birth %></td>
-  </tr>
-  <tr>
-    <th>Night sleep start:</th>
-    <td><%= @baby.night_sleep_start %></td>
-  </tr>
-  <tr>
-    <th>Wake up:</th>
-    <td><%= @baby.night_sleep_finish %></td>
-  </tr>
-</table>
+<div class="container d-flex justify-content-center">
+  <div class="card" style="max-width: 320px">
+    <% if @baby.photo %>
+      <img src="<%= @baby.photo %>" class="card-img-top" alt="photo">
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @baby.name %></h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Gender:</b> <%= @baby.gender %></li>
+      <li class="list-group-item"><b>Born:</b> <%= date_formatted_for_ui(@baby.date_of_birth) %></li>
+      <li class="list-group-item"><b>Night sleep</b> starts at <%= @baby.night_sleep_start %> o'clock</li>
+      <li class="list-group-item"><b>Wake up</b> at <%= @baby.night_sleep_finish %> o'clock</li>
+    </ul>
+    <div class="card-body">
+      <a href="/baby/edit" class="card-link">Edit</a>
+    </div>
+  </div>
+</div>

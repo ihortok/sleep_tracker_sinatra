@@ -1,15 +1,31 @@
-<% if @running_feeding.present? %>
-  <form action="/feedings/finish" method="post">
-    <input type="submit" value="Finish">
-    <%= erb :'shared/activities/form_partials/finished_at.html' %>
-    <br>
-    <input type="submit" value="Finish">
-  </form>
-<% else %>
-  <button id="set_activity_finished_at">Set feeding finish</button>
-  <form action="/feedings/create" method="post">
-    <%= erb :'shared/activities/form_partials/started_at.html' %>
-    <br>
-    <input type="submit" value="Start">
-  </form>
-<% end %>
+<div class="container">
+  <% if @running_feeding.present? %>
+    <p>
+      Current feeding has started:<br>
+      <span class="fs-4"><%= date_formatted_for_ui(@running_feeding.started_at) %></span>
+    </p>
+    <form action="/feedings/finish" method="post">
+      <%= erb :'shared/activities/form_partials/finished_at.html', locals: { with_value: true } %>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Finish</button>
+      </div>
+    </form>
+  <% else %>
+    <button id="set_activity_finished_at" class="btn btn-primary mb-3">Set feeding finish</button>
+    <form action="/feedings/create" method="post">
+      <h3>Breast:</h3>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="breast" id="breast-left" value="L">
+        <label class="form-check-label" for="breast-left">left</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="breast" id="breast-right" value="R">
+        <label class="form-check-label" for="breast-right">right</label>
+      </div>
+      <%= erb :'shared/activities/form_partials/started_at.html' %>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Start</button>
+      </div>
+    </form>
+  <% end %>
+</div>

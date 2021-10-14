@@ -1,39 +1,5 @@
-/* ------------ form ------------ */
-
-.form {
-  form {
-    width: 100%;
-  }
-  
-  input,
-  select {
-    display: block;
-    box-sizing: border-box; 
-    width: 100%;
-    margin-top: 2px;
-    padding: 10px;
-    border: 1px solid $grey;
-    border-radius: 5px;
-  }
-
-  .form-field { 
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  .form-actions {
-    padding-top: 15px;
-    text-align: center;
-  }
-
-  .form-submit {
-    padding: 10px 30px;
-    border: 1px solid $grey;
-    border-radius: 5px;
-  }
-
-  .form-errors {
-    color: red;
+.event-timestamps-form {
+  label {
+    padding: 0 3px;
   }
 }

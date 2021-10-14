@@ -15,9 +15,9 @@ class Baby < ActiveRecord::Base
 
   def photo(size: :big)
     photo_path = if size == :big
-                   "/uploads/#{id}_baby_photo_250x250.jpg"
+                   "/uploads/#{id}_baby_photo_#{ImageUploader::IMAGE_SIZES[:big]}.jpg"
                  else
-                   "/uploads/#{id}_baby_photo_50x50.jpg"
+                   "/uploads/#{id}_baby_photo_#{ImageUploader::IMAGE_SIZES[:small]}.jpg"
                  end
 
     return photo_path if File.file?("public#{photo_path}")
