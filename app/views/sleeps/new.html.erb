@@ -5,7 +5,7 @@
       <span class="fs-4"><%= date_formatted_for_ui(@running_sleep.started_at) %></span>
     </p>
     <form action="/sleeps/finish" method="post">
-      <%= erb :'shared/activities/form_partials/finished_at.html' %>
+      <%= erb :'shared/activities/form_partials/finished_at.html', locals: { with_value: true } %>
       <div class="text-center">
         <button type="submit" class="btn btn-primary">Finish</button>
       </div>

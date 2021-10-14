@@ -10,7 +10,7 @@ class Feeding < ActiveRecord::Base
   }
 
   enum breast: {
-    left: 0,
-    right: 1
+    left: 'L',
+    right: 'R'
   }
 end

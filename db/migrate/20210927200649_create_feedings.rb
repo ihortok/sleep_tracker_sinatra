@@ -5,7 +5,7 @@ class CreateFeedings < ActiveRecord::Migration[6.1]
       t.datetime :finished_at
       t.references :baby
       t.integer :status
-      t.integer :breast
+      t.string :breast
 
       t.timestamps
     end
