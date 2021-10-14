@@ -5,3 +5,9 @@
 .form-control {
   box-sizing: border-box;
 }
+
+.btn-teal {
+  color: var(--bs-white);
+  background-color: var(--bs-teal);
+  border-color: var(--bs-teal);
+}

@@ -86,9 +86,9 @@ if (activitiesChar !== null) {
         activity.style.top = 0;
       } else {
         if (activityStartDay !== 'yesterday') {
-          activity.style.height = `${(adaptedActivityFinishMinutes - adaptedActivityStartMinutes) / 4}px`
+          activity.style.height = `${Math.ceil((adaptedActivityFinishMinutes - adaptedActivityStartMinutes) / 4 + 0.1)}px`
         } else {
-          activity.style.height = `${adaptedActivityFinishMinutes / 4}px`
+          activity.style.height = `${Math.ceil(adaptedActivityFinishMinutes / 4 + 0.1)}px`
         }
       }
     }

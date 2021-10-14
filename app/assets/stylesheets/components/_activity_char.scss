@@ -7,7 +7,7 @@
 
   &-item {
     height: 360px;
-    background-color: --bs-gray-300;
+    background-color: var(--bs-gray-100);
     position: relative;
     
     .activity {
@@ -17,11 +17,11 @@
       width: 100%;
 
       &.activity-sleep {
-        background-color: --bs-orange;
+        background-color: var(--bs-teal);
       }
 
       &.activity-feeding {
-        background-color: --bs-green;
+        background-color: var(--bs-primary);
       }
     }
   }
