@@ -2,16 +2,6 @@
 
 # BabyParamsController
 class BabyParamsController < ApplicationController
-  get '/baby_params' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
-    @baby_params = current_user.baby.baby_params
-
-    erb :'baby_params/index.html', layout: :'layout.html'
-  end
-
   get '/baby_params/new' do
     redirect '/users/sign_in' unless logged_in?
 
@@ -40,7 +30,7 @@ class BabyParamsController < ApplicationController
     if @baby_param.save
       ImageUploader.new(id: @baby_param.id, name: :baby_param_photo, image: params[:photo]).call if params[:photo]
 
-      redirect '/baby_params'
+      redirect '/baby'
     else
       erb :'baby_params/new.html', layout: :'layout.html'
     end

@@ -1,31 +1,15 @@
 <div class="container">
   <div class="d-flex justify-content-center mb-3">
-    <%= erb :'baby/_baby_card.html'  %>
+    <%= erb :'baby/_baby_card.html' %>
   </div>
-
-  <% if @baby_params.any? %>
-    <h2 class="text-center">Baby parameters</h2>
-    <ul>
-      <% @baby_params.each do |baby_param| %>
-        <li>
-          <a href="/baby_params/<%= baby_param.id %>">
-            <div>
-              <img src="<%= baby_param.photo(size: :small) %>">
-            </div>
-            <div>
-              <span><%= baby_param.measurement_date %></span>
-              <div>
-                <span><%= baby_param.weight %></span>
-                <span><%= baby_param.height %></span>
-              </div>
-            </div>
-          </li>
-        </a>
-      <% end %>
-    </ul>
-  <% else %>
-    <p class="text-center">You haven't at any parameters yet</p>
-  <% end %>
+  <div class="mb-3">
+    <% if @baby_params.any? %>
+      <h2 class="text-center">Baby parameters</h2>
+      <%= erb :'baby/_baby_params_list.html' %>
+    <% else %>
+      <p class="text-center">You haven't at any parameters yet</p>
+    <% end %>
+  </div>
   <div class="text-center">
     <a href="/baby_params/new" class="btn btn-primary">Add parameters</a>
   </div>

@@ -1,0 +1,17 @@
+<div class="card" style="max-width: 320px">
+  <% if @baby_param.photo %>
+    <img src="<%= @baby_param.photo %>" class="card-img-top" alt="photo">
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @baby_param.measurement_date %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Weight:</b> <%= @baby_param.weight %></li>
+    <li class="list-group-item"><b>Height:</b> <%= @baby_param.height %></li>
+  </ul>
+  <div class="card-body">
+    <form action="/baby_params/<%= @baby_param.id %>/destroy" method="post">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+</div>
