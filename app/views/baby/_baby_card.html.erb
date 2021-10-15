@@ -1,0 +1,18 @@
+<div class="card" style="max-width: 320px">
+  <% if @baby.photo %>
+    <img src="<%= @baby.photo %>" class="card-img-top" alt="photo">
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @baby.name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Gender:</b> <%= @baby.gender %></li>
+    <li class="list-group-item"><b>Born:</b> <%= date_formatted_for_ui(@baby.date_of_birth) %></li>
+    <li class="list-group-item"><b>Night sleep</b> starts at <%= @baby.night_sleep_start %> o'clock</li>
+    <li class="list-group-item"><b>Wake up</b> at <%= @baby.night_sleep_finish %> o'clock</li>
+  </ul>
+  <div class="card-body">
+    <a href="/baby/edit" class="card-link">Edit</a>
+    <a href="/baby_params/new" class="card-link">Add parameters</a>
+  </div>
+</div>

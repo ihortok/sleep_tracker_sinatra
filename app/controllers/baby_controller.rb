@@ -6,6 +6,7 @@ class BabyController < ApplicationController
     redirect '/users/sign_in' unless logged_in?
 
     @baby = current_user.baby
+    @baby_params = @baby.baby_params.order(id: :desc)
 
     redirect '/baby/new' unless @baby.present?
 

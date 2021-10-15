@@ -1,40 +1,32 @@
-<form action="<%= action %>" enctype="multipart/form-data" method="post" class="form">
-  <div class="form-field">
-    <label>
-      Photo:
-      <input type="file" name="photo">
-    </label>
+<form action="<%= action %>" enctype="multipart/form-data" method="post">
+  <div class="form-group">
+    <label for="params-photo">Photo</label>
+    <input type="file" class="form-control" id="params-photo" name="photo">
   </div>
-  <div class="form-field">
-    <label>
-      Weight:
-      <input type="text" name="weight" value="<%= @baby_param&.weight %>">
-      <% if @baby_param&.errors && @baby_param.errors[:weight].present? %>
-        <small class="form-errors"><%= @baby_param.errors[:weight].join('; ') %></small>
-      <% end %>
-    </label>
+  <div class="form-group">
+    <label for="params-weight">Weight (in grams)</label>
+    <input type="number" class="form-control" id="params-weight" name="weight" value="<%= @baby_param&.weight %>">
+    <% if @baby_param&.errors && @baby_param.errors[:weight].present? %>
+      <small class="text-danger"><%= @baby_param.errors[:name].join('; ') %></small>
+    <% end %>
   </div>
-  <div class="form-field">
-    <label>
-      Height:
-      <input type="text" name="height" value="<%= @baby_param&.height %>">
-      <% if @baby_param&.errors && @baby_param.errors[:height].present? %>
-        <small class="form-errors"><%= @baby_param.errors[:height].join('; ') %></small>
-      <% end %>
-    </label>
+  <div class="form-group">
+    <label for="params-height">Height (in millimeters)</label>
+    <input type="number" class="form-control" id="params-height" name="height" value="<%= @baby_param&.height %>">
+    <% if @baby_param&.errors && @baby_param.errors[:weight].present? %>
+      <small class="text-danger"><%= @baby_param.errors[:name].join('; ') %></small>
+    <% end %>
   </div>
-  <div class="form-field">
-    <label>
-      Measurement date:
-      <input type="datetime-local" name="measurement_date"
-             value="<%= date_formatted_for_datetime_value(@baby_param&.measurement_date) %>">
-      <% if @baby_param&.errors && @baby_param.errors[:measurement_date].present? %>
-        <small class="form-errors"><%= @baby_param.errors[:measurement_date].join('; ') %></small>
-      <% end %>
-    </label>
+  <div class="form-group">
+    <label for="measurement-date">Measurement date</label>
+    <input id="measurement-date" type="date" class="form-control" name="measurement_date"
+           value="<%= date_formatted_for_datetime_value(@baby_param&.measurement_date) %>">
+    <% if @baby_param&.errors && @baby_param.errors[:measurement_date].present? %>
+      <small class="text-danger"><%= @baby_param.errors[:measurement_date].join('; ') %></small>
+    <% end %>
   </div>
-  <div class="form-actions">
-    <button type="submit" class="form-submit">
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">
       <%= submit_button_text || 'Submit' %>
     </button>
   <div>
