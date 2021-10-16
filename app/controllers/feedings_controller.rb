@@ -39,7 +39,7 @@ class FeedingsController < ApplicationController
   private
 
   def running_feeding
-    @running_feeding ||= current_user.baby.feedings.running.first
+    @running_feeding ||= baby.feedings.running.first
   end
 
   def feeding_params
@@ -47,7 +47,7 @@ class FeedingsController < ApplicationController
       activity_class: 'Feeding',
       started_at_param: params[:activity_started_at],
       finished_at_param: params[:activity_finished_at],
-      other_params: params.except('activity_started_at', 'activity_finished_at').merge(baby_id: current_user.baby.id),
+      other_params: params.except('activity_started_at', 'activity_finished_at').merge(baby_id: baby.id),
       time_zone: current_user.time_zone
     }
   end

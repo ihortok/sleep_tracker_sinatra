@@ -3,7 +3,7 @@
 # DashboardController
 class DashboardController < ApplicationController
   get '/dashboard' do
-    @activities = SleepsQuery.new(current_user.baby).all_during_week_before(
+    @activities = SleepsQuery.new(baby).all_during_week_before(
       Time.current.in_time_zone(user_time_zone)
     )
 

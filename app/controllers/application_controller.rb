@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def baby
-      current_user.baby
+      current_user.baby || @baby
     end
 
     def user_time_zone

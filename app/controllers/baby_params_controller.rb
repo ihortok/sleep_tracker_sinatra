@@ -7,7 +7,7 @@ class BabyParamsController < ApplicationController
   end
 
   get '/baby_params/:id' do
-    @baby_param = current_user.baby.baby_params.find(params[:id])
+    @baby_param = baby.baby_params.find(params[:id])
 
     erb :'baby_params/show.html', layout: :'layout.html'
   end
@@ -43,7 +43,7 @@ class BabyParamsController < ApplicationController
   end
 
   post '/baby_params/:id/destroy' do
-    @baby_param = current_user.baby.baby_params.find(params[:id])
+    @baby_param = baby.baby_params.find(params[:id])
 
     if @baby_param.destroy
       redirect '/baby'
@@ -55,6 +55,6 @@ class BabyParamsController < ApplicationController
   private
 
   def baby_param_params
-    params.slice(:weight, :height, :date_of_measurement).merge(baby: current_user.baby)
+    params.slice(:weight, :height, :date_of_measurement).merge(baby: baby)
   end
 end

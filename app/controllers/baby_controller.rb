@@ -3,20 +3,19 @@
 # BabyController
 class BabyController < ApplicationController
   get '/baby' do
-    @baby = current_user.baby
-    @baby_params = @baby.baby_params.order(id: :desc)
+    @baby_params = baby.baby_params.order(id: :desc)
 
     erb :'baby/show.html', layout: :'layout.html'
   end
 
   get '/baby/new' do
-    redirect '/baby' if current_user.baby.present?
+    redirect '/baby' if baby.present?
 
     erb :'baby/new.html', layout: :'layout.html'
   end
 
   post '/baby/create' do
-    redirect '/baby' if current_user.baby.present?
+    redirect '/baby' if baby.present?
 
     @baby = Baby.new(baby_params)
 
@@ -30,16 +29,12 @@ class BabyController < ApplicationController
   end
 
   get '/baby/edit' do
-    @baby = current_user.baby
-
     erb :'baby/edit.html', layout: :'layout.html'
   end
 
   post '/baby/update' do
-    @baby = current_user.baby
-
-    if @baby.update(baby_params)
-      ImageUploader.new(id: @baby.id, name: :baby_photo, image: params[:photo]).call if params[:photo]
+    if baby.update(baby_params)
+      ImageUploader.new(id: baby.id, name: :baby_photo, image: params[:photo]).call if params[:photo]
 
       redirect '/baby'
     else

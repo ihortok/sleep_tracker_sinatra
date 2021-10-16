@@ -2,11 +2,9 @@
 
 # Sleeps query
 class SleepsQuery
-  attr_reader :baby, :sleeps
-
   def initialize(baby)
     @baby = baby
-    @sleeps = Sleep.where(baby: baby)
+    @sleeps = Sleep.where(baby: @baby)
   end
 
   def all_during_week_before(datetime)
@@ -15,8 +13,8 @@ class SleepsQuery
 
     7.times do |i|
       day = datetime - i.days
-      sleeps_hash[(day).strftime('%Y-%m-%d')] = all_during(day, baby.sleeps)
-      feedings_hash[(day).strftime('%Y-%m-%d')] = all_during(day, baby.feedings)
+      sleeps_hash[(day).strftime('%Y-%m-%d')] = all_during(day, @baby.sleeps)
+      feedings_hash[(day).strftime('%Y-%m-%d')] = all_during(day, @baby.feedings)
     end
 
     {
@@ -27,12 +25,14 @@ class SleepsQuery
 
   private
 
+  attr_reader :sleeps
+
   def all_during(day, activities)
     activities.where(timestamps_query(day)).order(:started_at)
   end
 
   def timestamps_query(day)
-    date_start = day.change({ hour: baby.wakening_hour }).utc
+    date_start = day.change({ hour: @baby.wakening_hour }).utc
     date_end = date_start + 1.day
 
     %(

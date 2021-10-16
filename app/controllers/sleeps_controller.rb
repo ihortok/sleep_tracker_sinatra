@@ -76,7 +76,7 @@ class SleepsController < ApplicationController
     end
 
     {
-      baby: current_user.baby,
+      baby: baby,
       started_at: sleep_started_at,
       finished_at: sleep_finished_at,
       status: status
@@ -88,6 +88,6 @@ class SleepsController < ApplicationController
   end
 
   def set_running_sleep
-    @running_sleep = current_user.baby.sleeps.running.first
+    @running_sleep = baby.sleeps.running.first
   end
 end
