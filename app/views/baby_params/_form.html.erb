@@ -20,7 +20,7 @@
   <div class="form-group">
     <label for="measurement-date">Measurement date</label>
     <input id="measurement-date" type="date" class="form-control" name="date_of_measurement"
-           value="<%= date_formatted_for_datetime_value(@baby_param&.date_of_measurement) %>">
+           value="<%= date_formatted_for_datetime_value(@baby_param&.date_of_measurement, with_time: false) %>">
     <% if @baby_param&.errors && @baby_param.errors[:date_of_measurement].present? %>
       <small class="text-danger"><%= @baby_param.errors[:date_of_measurement].join('; ') %></small>
     <% end %>

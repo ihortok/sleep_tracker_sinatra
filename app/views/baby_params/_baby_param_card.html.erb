@@ -9,7 +9,8 @@
     <li class="list-group-item"><b>Weight:</b> <%= @baby_param.weight %></li>
     <li class="list-group-item"><b>Height:</b> <%= @baby_param.height %></li>
   </ul>
-  <div class="card-body">
+  <div class="card-body d-flex">
+    <a href="/baby_params/<%= @baby_param.id %>/edit" class="btn btn-primary me-3">Edit</a>
     <form action="/baby_params/<%= @baby_param.id %>/destroy" method="post">
       <button type="submit" class="btn btn-danger">Delete</button>
     </form>
