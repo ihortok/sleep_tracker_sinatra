@@ -3,18 +3,12 @@
 # SleepsController
 class SleepsController < ApplicationController
   get '/sleeps/new' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/dashboard' unless current_user.baby.present?
-
     set_running_sleep
 
     erb :'sleeps/new.html', layout: :'layout.html'
   end
 
   post '/sleeps/create' do
-    redirect '/users/sign_in' and return unless logged_in?
-
     set_running_sleep
 
     redirect '/sleeps/new' if @running_sleep
@@ -29,8 +23,6 @@ class SleepsController < ApplicationController
   end
 
   post '/sleeps/finish' do
-    redirect '/users/sign_in' and return unless logged_in?
-
     set_running_sleep
 
     redirect '/sleeps/new' unless @running_sleep

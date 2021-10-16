@@ -3,7 +3,7 @@
 # UsersController
 class UsersController < ApplicationController
   get '/users/sign_in' do
-    redirect '/dashboard' and return if logged_in?
+    redirect '/dashboard' if logged_in?
 
     erb :'users/sign_in.html', layout: :'layout.html'
   end
