@@ -19,20 +19,21 @@ ActiveRecord::Schema.define(version: 2021_09_27_200649) do
     t.string "name"
     t.string "gender"
     t.datetime "date_of_birth"
+    t.integer "falling_asleep_hour"
+    t.integer "wakening_hour"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "night_sleep_start"
-    t.integer "night_sleep_finish"
     t.index ["user_id"], name: "index_babies_on_user_id"
   end
 
   create_table "baby_params", force: :cascade do |t|
     t.integer "weight"
     t.integer "height"
-    t.datetime "measurement_date"
+    t.date "date_of_measurement"
     t.bigint "baby_id"
     t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["baby_id"], name: "index_baby_params_on_baby_id"
   end
 
@@ -50,10 +51,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_200649) do
   create_table "sleeps", force: :cascade do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.integer "status"
     t.bigint "baby_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status"
     t.index ["baby_id"], name: "index_sleeps_on_baby_id"
   end
 
@@ -61,10 +62,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_200649) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "country"
     t.string "time_zone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

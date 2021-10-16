@@ -66,6 +66,6 @@ class BabyController < ApplicationController
   private
 
   def baby_params
-    params.slice(:name, :gender, :date_of_birth, :night_sleep_start, :night_sleep_finish).merge(user: current_user)
+    params.slice(:name, :gender, :date_of_birth, :falling_asleep_hour, :wakening_hour).merge(user: current_user)
   end
 end

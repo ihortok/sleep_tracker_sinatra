@@ -32,7 +32,7 @@ class SleepsQuery
   end
 
   def timestamps_query(day)
-    date_start = day.change({ hour: baby.night_sleep_finish }).utc
+    date_start = day.change({ hour: baby.wakening_hour }).utc
     date_end = date_start + 1.day
 
     %(

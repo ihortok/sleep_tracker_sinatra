@@ -4,7 +4,7 @@
 class BabyParam < ActiveRecord::Base
   belongs_to :baby
 
-  validates :weight, :height, :measurement_date, presence: true
+  validates :weight, :height, :date_of_measurement, presence: true
 
   def photo(size: :big)
     photo_path = if size == :big

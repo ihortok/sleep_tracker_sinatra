@@ -8,8 +8,8 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><b>Gender:</b> <%= @baby.gender %></li>
     <li class="list-group-item"><b>Born:</b> <%= date_formatted_for_ui(@baby.date_of_birth) %></li>
-    <li class="list-group-item"><b>Night sleep</b> starts at <%= @baby.night_sleep_start %> o'clock</li>
-    <li class="list-group-item"><b>Wake up</b> at <%= @baby.night_sleep_finish %> o'clock</li>
+    <li class="list-group-item"><b>Night sleep</b> starts at <%= @baby.falling_asleep_hour %> o'clock</li>
+    <li class="list-group-item"><b>Wake up</b> at <%= @baby.wakening_hour %> o'clock</li>
   </ul>
   <div class="card-body">
     <a href="/baby/edit" class="card-link">Edit</a>

@@ -53,6 +53,6 @@ class BabyParamsController < ApplicationController
   private
 
   def baby_param_params
-    params.slice(:weight, :height, :measurement_date).merge(baby: current_user.baby)
+    params.slice(:weight, :height, :date_of_measurement).merge(baby: current_user.baby)
   end
 end
