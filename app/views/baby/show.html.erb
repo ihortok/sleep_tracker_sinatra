@@ -1,19 +1,16 @@
-<div class="container d-flex justify-content-center">
-  <div class="card" style="max-width: 320px">
-    <% if @baby.photo %>
-      <img src="<%= @baby.photo %>" class="card-img-top" alt="photo">
+<div class="container">
+  <div class="d-flex justify-content-center mb-3">
+    <%= erb :'baby/_baby_card.html' %>
+  </div>
+  <div class="mb-3">
+    <% if @baby_params.any? %>
+      <h2 class="text-center">Baby parameters</h2>
+      <%= erb :'baby/_baby_params_list.html' %>
+    <% else %>
+      <p class="text-center">You haven't at any parameters yet</p>
     <% end %>
-    <div class="card-body">
-      <h5 class="card-title"><%= @baby.name %></h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><b>Gender:</b> <%= @baby.gender %></li>
-      <li class="list-group-item"><b>Born:</b> <%= date_formatted_for_ui(@baby.date_of_birth) %></li>
-      <li class="list-group-item"><b>Night sleep</b> starts at <%= @baby.night_sleep_start %> o'clock</li>
-      <li class="list-group-item"><b>Wake up</b> at <%= @baby.night_sleep_finish %> o'clock</li>
-    </ul>
-    <div class="card-body">
-      <a href="/baby/edit" class="card-link">Edit</a>
-    </div>
+  </div>
+  <div class="text-center">
+    <a href="/baby_params/new" class="btn btn-primary">Add parameters</a>
   </div>
 </div>

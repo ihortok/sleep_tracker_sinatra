@@ -34,16 +34,16 @@
   </div>
   <div class="form-group">
     <label for="night-sleep-start">Night sleep start</label>
-    <input type="number" class="form-control" id="night-sleep-start" name="night_sleep_start" value="<%= @baby&.night_sleep_start %>">
-    <% if @baby&.errors && @baby.errors[:night_sleep_start].present? %>
-      <small class="text-danger"><%= @baby.errors[:night_sleep_start].join('; ') %></small>
+    <input type="number" class="form-control" id="night-sleep-start" name="falling_asleep_hour" value="<%= @baby&.falling_asleep_hour %>">
+    <% if @baby&.errors && @baby.errors[:falling_asleep_hour].present? %>
+      <small class="text-danger"><%= @baby.errors[:falling_asleep_hour].join('; ') %></small>
     <% end %>
   </div>
   <div class="form-group">
     <label for="night-sleep-finish">Night sleep finish</label>
-    <input type="number" class="form-control" id="night-sleep-inish" name="night_sleep_finish" value="<%= @baby&.night_sleep_finish %>">
-    <% if @baby&.errors && @baby.errors[:night_sleep_finish].present? %>
-      <small class="text-danger"><%= @baby.errors[:night_sleep_finish].join('; ') %></small>
+    <input type="number" class="form-control" id="night-sleep-inish" name="wakening_hour" value="<%= @baby&.wakening_hour %>">
+    <% if @baby&.errors && @baby.errors[:wakening_hour].present? %>
+      <small class="text-danger"><%= @baby.errors[:wakening_hour].join('; ') %></small>
     <% end %>
   </div>
   <div class="text-center">

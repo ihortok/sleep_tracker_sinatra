@@ -10,7 +10,7 @@ class Baby < ActiveRecord::Base
   has_many :feedings
 
   validates :name, :gender, :date_of_birth,
-            :night_sleep_start, :night_sleep_finish,
+            :falling_asleep_hour, :wakening_hour,
             presence: true
 
   def photo(size: :big)

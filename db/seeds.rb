@@ -17,8 +17,8 @@ unless user.baby.present?
     gender: 'G',
     date_of_birth: Time.current - 1.month,
     user: user,
-    night_sleep_start: 23,
-    night_sleep_finish: 7
+    falling_asleep_hour: 23,
+    wakening_hour: 7
   )
 
   p 'baby added' if baby.save!
@@ -26,7 +26,7 @@ unless user.baby.present?
   baby_param = baby.baby_params.new(
     weight: 2950,
     height: 510,
-    measurement_date: baby.date_of_birth
+    date_of_measurement: baby.date_of_birth
   )
 
   p 'baby params added' if baby_param.save!

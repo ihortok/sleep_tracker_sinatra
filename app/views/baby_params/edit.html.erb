@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
-    <% if @baby.photo %>
+    <% if @baby_param.photo %>
       <div class="col-md-4 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center pb-5">
-        <img src="<%= @baby.photo %>" class="rounded" alt="photo">
+        <img src="<%= @baby_param.photo %>" class="rounded" alt="photo">
       </div>
     <% end %>
     <div class="col-md-8 col-lg-6 col-xl-4">
-      <%= erb :'baby/_form.html', locals: { action: '/baby/update', submit_button_text: 'Update baby' } %>
+      <%= erb :'baby_params/_form.html', locals: { action: "/baby_params/#{@baby_param.id}/update", submit_button_text: 'Update parameters' } %>
     </div>
   </div>
 </div>

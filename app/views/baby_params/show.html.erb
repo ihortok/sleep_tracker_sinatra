@@ -1,20 +1,5 @@
-<img src="<%= @baby_param.photo %>">
-
-<table>
-  <tr>
-    <th>Measurement date:</th>
-    <td><%= @baby_param.measurement_date %></td>
-  </tr>
-  <tr>
-    <th>Weight:</th>
-    <td><%= @baby_param.weight %></td>
-  </tr>
-  <tr>
-    <th>Height:</th>
-    <td><%= @baby_param.height %></td>
-  </tr>
-</table>
-
-<form action="/baby_params/<%= @baby_param.id %>/destroy" method="post">
-  <button type="submit">Delete</button>
-</form>
+<div class="container">
+  <div class="d-flex justify-content-center mb-3">
+    <%= erb :'baby_params/_baby_param_card.html' %>
+  </div>
+</div>

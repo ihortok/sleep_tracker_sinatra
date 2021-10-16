@@ -6,6 +6,7 @@ class BabyController < ApplicationController
     redirect '/users/sign_in' unless logged_in?
 
     @baby = current_user.baby
+    @baby_params = @baby.baby_params.order(id: :desc)
 
     redirect '/baby/new' unless @baby.present?
 
@@ -65,6 +66,6 @@ class BabyController < ApplicationController
   private
 
   def baby_params
-    params.slice(:name, :gender, :date_of_birth, :night_sleep_start, :night_sleep_finish).merge(user: current_user)
+    params.slice(:name, :gender, :date_of_birth, :falling_asleep_hour, :wakening_hour).merge(user: current_user)
   end
 end

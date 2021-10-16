@@ -2,16 +2,6 @@
 
 # BabyParamsController
 class BabyParamsController < ApplicationController
-  get '/baby_params' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
-    @baby_params = current_user.baby.baby_params
-
-    erb :'baby_params/index.html', layout: :'layout.html'
-  end
-
   get '/baby_params/new' do
     redirect '/users/sign_in' unless logged_in?
 
@@ -40,9 +30,35 @@ class BabyParamsController < ApplicationController
     if @baby_param.save
       ImageUploader.new(id: @baby_param.id, name: :baby_param_photo, image: params[:photo]).call if params[:photo]
 
-      redirect '/baby_params'
+      redirect '/baby'
     else
       erb :'baby_params/new.html', layout: :'layout.html'
+    end
+  end
+
+  get '/baby_params/:id/edit' do
+    redirect '/users/sign_in' unless logged_in?
+
+    redirect '/baby/new' unless current_user.baby.present?
+
+    @baby_param = BabyParam.find(params[:id])
+
+    erb :'baby_params/edit.html', layout: :'layout.html'
+  end
+
+  post '/baby_params/:id/update' do
+    redirect '/users/sign_in' unless logged_in?
+
+    redirect '/baby/new' unless current_user.baby.present?
+
+    @baby_param = BabyParam.find(params[:id])
+
+    if @baby_param.update(baby_param_params)
+      ImageUploader.new(id: @baby_param.id, name: :baby_param_photo, image: params[:photo]).call if params[:photo]
+
+      redirect "/baby_params/#{@baby_param.id}"
+    else
+      erb :'baby_params/edit.html', layout: :'layout.html'
     end
   end
 
@@ -54,7 +70,7 @@ class BabyParamsController < ApplicationController
     @baby_param = current_user.baby.baby_params.find(params[:id])
 
     if @baby_param.destroy
-      redirect '/baby_params'
+      redirect '/baby'
     else
       erb :'baby_params/show.html', layout: :'layout.html', locals: { message: 'Something went wrong. Please try again.' }
     end
@@ -63,6 +79,6 @@ class BabyParamsController < ApplicationController
   private
 
   def baby_param_params
-    params.slice(:weight, :height, :measurement_date).merge(baby: current_user.baby)
+    params.slice(:weight, :height, :date_of_measurement).merge(baby: current_user.baby)
   end
 end

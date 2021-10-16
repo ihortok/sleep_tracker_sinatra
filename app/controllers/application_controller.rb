@@ -28,8 +28,14 @@ class ApplicationController < Sinatra::Base
       current_user.time_zone
     end
 
-    def date_formatted_for_datetime_value(date)
-      date.strftime('%Y-%m-%dT%H:%M')
+    def date_formatted_for_datetime_value(date, with_time: true)
+      format = if with_time == true
+                 '%Y-%m-%dT%H:%M'
+               else
+                 '%Y-%m-%d'
+               end
+
+      date.strftime(format)
     rescue NoMethodError
       nil
     end

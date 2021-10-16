@@ -3,10 +3,10 @@ class CreateBabyParams < ActiveRecord::Migration[6.1]
     create_table :baby_params do |t|
       t.integer :weight
       t.integer :height
-      t.datetime :measurement_date
+      t.date :date_of_measurement
       t.references :baby
 
-      t.datetime :created_at, precision: 6, null: false
+      t.timestamps
     end
   end
 end
