@@ -1,10 +1,10 @@
 <div class="container">
-  <ul id="activities-char" class="activities-char mb-3" data-wake-up-hour=<%= current_user.baby.wakening_hour %>>
+  <ul id="activities-char" class="activities-char mb-3" data-wake-up-hour=<%= baby.wakening_hour %>>
     <% days = 6 %>
     <% time_now = Time.now.in_time_zone(user_time_zone) %>
     <% date_today = time_now.to_date %>
     <% 7.times do |i| %>
-      <% wakening_hour = (time_now - (days - i).days).change({ hour: current_user.baby.wakening_hour }) %>
+      <% wakening_hour = (time_now - (days - i).days).change({ hour: baby.wakening_hour }) %>
       <% day = (date_today - (days - i).days).to_s %>
       <li class="activities-char-item" data-day=<%= day %>>
         <% @activities[:sleeps][day].each do |sleep| %>
@@ -48,7 +48,7 @@
     <% end %>
   </ul>
 
-  <% if current_user.baby.present? %>
+  <% if baby.present? %>
     <div class="d-flex justify-content-center">
       <div class="btn-group">
         <a href="/sleeps/new" class="btn btn-teal btn-lg">Srart sleep</a>

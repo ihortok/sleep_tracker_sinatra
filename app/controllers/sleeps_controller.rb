@@ -3,18 +3,12 @@
 # SleepsController
 class SleepsController < ApplicationController
   get '/sleeps/new' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/dashboard' unless current_user.baby.present?
-
     set_running_sleep
 
     erb :'sleeps/new.html', layout: :'layout.html'
   end
 
   post '/sleeps/create' do
-    redirect '/users/sign_in' and return unless logged_in?
-
     set_running_sleep
 
     redirect '/sleeps/new' if @running_sleep
@@ -22,15 +16,13 @@ class SleepsController < ApplicationController
     sleep = Sleep.new(sleep_params)
 
     if sleep.save
-      redirect '/dashboard'
+      redirect '/sleeps/new'
     else
       erb :'dashboard.html', layout: :'layout.html', locals: { message: 'Something went wrong. Please try again.' }
     end
   end
 
   post '/sleeps/finish' do
-    redirect '/users/sign_in' and return unless logged_in?
-
     set_running_sleep
 
     redirect '/sleeps/new' unless @running_sleep
@@ -65,29 +57,10 @@ class SleepsController < ApplicationController
       time_zone_offset
     )
 
-    finished_at_hour = params['activity_finished_at']['hour']
-    finished_at_minute = params['activity_finished_at']['minute']
-
-    if finished_at_hour.present? && finished_at_minute.present?
-      status = :finished
-      sleep_finished_at = Time.new(
-        params['activity_finished_at']['year'],
-        params['activity_finished_at']['month'],
-        params['activity_finished_at']['day'],
-        finished_at_hour,
-        finished_at_minute,
-        0,
-        time_zone_offset
-      )
-    else
-      status = :running
-    end
-
     {
-      baby: current_user.baby,
+      baby: baby,
       started_at: sleep_started_at,
-      finished_at: sleep_finished_at,
-      status: status
+      status: :running
     }
   end
 
@@ -96,6 +69,6 @@ class SleepsController < ApplicationController
   end
 
   def set_running_sleep
-    @running_sleep = current_user.baby.sleeps.running.first
+    @running_sleep = baby.sleeps.running.first
   end
 end

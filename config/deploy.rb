@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.16.0'
 
-set :application, 'sleeptracker'
+set :application, 'babysleep'
 set :repo_url, 'git@github.com:ihortok/sleep_tracker_sinatra.git'
 
 # Deploy to the user's home directory

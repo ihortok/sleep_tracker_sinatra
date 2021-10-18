@@ -5,45 +5,45 @@
   </div>
   <div class="form-group">
     <label for="baby-name">Name</label>
-    <input type="text" class="form-control" id="baby-name" name="name" value="<%= @baby&.name %>">
-    <% if @baby&.errors && @baby.errors[:name].present? %>
-      <small class="text-danger"><%= @baby.errors[:name].join('; ') %></small>
+    <input type="text" class="form-control" id="baby-name" name="name" value="<%= baby&.name %>">
+    <% if baby&.errors && baby.errors[:name].present? %>
+      <small class="text-danger"><%= baby.errors[:name].join('; ') %></small>
     <% end %>
   </div>
   <div class="form-group">
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="gender" id="baby-gender-girl" value="G" <%= "checked" if @baby&.girl? %>>
+      <input class="form-check-input" type="radio" name="gender" id="baby-gender-girl" value="G" <%= "checked" if baby&.girl? %>>
       <label class="form-check-label" for="baby-gender-girl">Girl</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="gender" id="baby-gender-boy" value="B" <%= "checked" if @baby&.boy? %>>
+      <input class="form-check-input" type="radio" name="gender" id="baby-gender-boy" value="B" <%= "checked" if baby&.boy? %>>
       <label class="form-check-label" for="baby-gender-boy">Boy</label>
     </div>
     <br>
-    <% if @baby&.errors && @baby.errors[:gender].present? %>
-      <small class="text-danger"><%= @baby.errors[:gender].join('; ') %></small>
+    <% if baby&.errors && baby.errors[:gender].present? %>
+      <small class="text-danger"><%= baby.errors[:gender].join('; ') %></small>
     <% end %>
   </div>
   <div class="form-group">
     <label for="baby-birth-date">Date of Birth</label>
     <input type="datetime-local" class="form-control" name="date_of_birth"
-           value="<%= date_formatted_for_datetime_value(@baby&.date_of_birth) %>">
-    <% if @baby&.errors && @baby.errors[:date_of_birth].present? %>
-      <small class="text-danger"><%= @baby.errors[:date_of_birth].join('; ') %></small>
+           value="<%= date_formatted_for_datetime_value(baby&.date_of_birth) %>">
+    <% if baby&.errors && baby.errors[:date_of_birth].present? %>
+      <small class="text-danger"><%= baby.errors[:date_of_birth].join('; ') %></small>
     <% end %>
   </div>
   <div class="form-group">
     <label for="night-sleep-start">Night sleep start</label>
-    <input type="number" class="form-control" id="night-sleep-start" name="falling_asleep_hour" value="<%= @baby&.falling_asleep_hour %>">
-    <% if @baby&.errors && @baby.errors[:falling_asleep_hour].present? %>
-      <small class="text-danger"><%= @baby.errors[:falling_asleep_hour].join('; ') %></small>
+    <input type="number" class="form-control" id="night-sleep-start" name="falling_asleep_hour" value="<%= baby&.falling_asleep_hour %>">
+    <% if baby&.errors && baby.errors[:falling_asleep_hour].present? %>
+      <small class="text-danger"><%= baby.errors[:falling_asleep_hour].join('; ') %></small>
     <% end %>
   </div>
   <div class="form-group">
     <label for="night-sleep-finish">Night sleep finish</label>
-    <input type="number" class="form-control" id="night-sleep-inish" name="wakening_hour" value="<%= @baby&.wakening_hour %>">
-    <% if @baby&.errors && @baby.errors[:wakening_hour].present? %>
-      <small class="text-danger"><%= @baby.errors[:wakening_hour].join('; ') %></small>
+    <input type="number" class="form-control" id="night-sleep-inish" name="wakening_hour" value="<%= baby&.wakening_hour %>">
+    <% if baby&.errors && baby.errors[:wakening_hour].present? %>
+      <small class="text-danger"><%= baby.errors[:wakening_hour].join('; ') %></small>
     <% end %>
   </div>
   <div class="text-center">

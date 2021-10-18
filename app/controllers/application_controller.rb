@@ -9,6 +9,16 @@ class ApplicationController < Sinatra::Base
     set :session_secret, '_sessionSuperSecret_'
   end
 
+  before do
+    redirect '/users/sign_in' if !logged_in? && request.path_info != '/users/sign_in'
+
+    return if !logged_in? && request.path_info == '/users/sign_in'
+
+    return if logged_in? && request.path_info == '/users/sign_out'
+
+    redirect '/baby/new' if !baby.present? && !(['/baby/new', '/baby/create'].include? request.path_info)
+  end
+
   get '/' do
     redirect '/dashboard' and return if logged_in?
 
@@ -22,6 +32,10 @@ class ApplicationController < Sinatra::Base
 
     def current_user
       @user = User.find_by(id: session[:user_id])
+    end
+
+    def baby
+      current_user.baby || @baby
     end
 
     def user_time_zone
@@ -41,7 +55,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def date_formatted_for_ui(date)
-      date.strftime('%Y-%m-%d at %H:%M')
+      date.in_time_zone(user_time_zone).strftime('%Y-%m-%d at %H:%M')
     rescue NoMethodError
       nil
     end

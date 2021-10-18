@@ -3,28 +3,16 @@
 # BabyParamsController
 class BabyParamsController < ApplicationController
   get '/baby_params/new' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
     erb :'baby_params/new.html', layout: :'layout.html'
   end
 
   get '/baby_params/:id' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
-    @baby_param = current_user.baby.baby_params.find(params[:id])
+    @baby_param = baby.baby_params.find(params[:id])
 
     erb :'baby_params/show.html', layout: :'layout.html'
   end
 
   post '/baby_params/create' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
     @baby_param = BabyParam.new(baby_param_params)
 
     if @baby_param.save
@@ -37,20 +25,12 @@ class BabyParamsController < ApplicationController
   end
 
   get '/baby_params/:id/edit' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
     @baby_param = BabyParam.find(params[:id])
 
     erb :'baby_params/edit.html', layout: :'layout.html'
   end
 
   post '/baby_params/:id/update' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
     @baby_param = BabyParam.find(params[:id])
 
     if @baby_param.update(baby_param_params)
@@ -63,11 +43,7 @@ class BabyParamsController < ApplicationController
   end
 
   post '/baby_params/:id/destroy' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/baby/new' unless current_user.baby.present?
-
-    @baby_param = current_user.baby.baby_params.find(params[:id])
+    @baby_param = baby.baby_params.find(params[:id])
 
     if @baby_param.destroy
       redirect '/baby'
@@ -79,6 +55,6 @@ class BabyParamsController < ApplicationController
   private
 
   def baby_param_params
-    params.slice(:weight, :height, :date_of_measurement).merge(baby: current_user.baby)
+    params.slice(:weight, :height, :date_of_measurement).merge(baby: baby)
   end
 end

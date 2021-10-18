@@ -3,32 +3,24 @@
 # FeedingsController
 class FeedingsController < ApplicationController
   get '/feedings/new' do
-    redirect '/users/sign_in' unless logged_in?
-
-    redirect '/dashboard' unless current_user.baby.present?
-
     running_feeding
 
     erb :'feedings/new.html', layout: :'layout.html'
   end
 
   post '/feedings/create' do
-    redirect '/users/sign_in' and return unless logged_in?
-
     redirect '/feedings/new' if running_feeding
 
     result = ActivityCreator.new(**feeding_params).call
 
     if result.success?
-      redirect '/dashboard'
+      redirect '/feedings/new'
     else
       p result.error
     end
   end
 
   post '/feedings/finish' do
-    redirect '/users/sign_in' and return unless logged_in?
-
     redirect '/feedings/new' unless running_feeding
 
     result = ActivityTerminator.new(
@@ -47,15 +39,14 @@ class FeedingsController < ApplicationController
   private
 
   def running_feeding
-    @running_feeding ||= current_user.baby.feedings.running.first
+    @running_feeding ||= baby.feedings.running.first
   end
 
   def feeding_params
     {
       activity_class: 'Feeding',
       started_at_param: params[:activity_started_at],
-      finished_at_param: params[:activity_finished_at],
-      other_params: params.except('activity_started_at', 'activity_finished_at').merge(baby_id: current_user.baby.id),
+      other_params: params.except('activity_started_at').merge(baby_id: baby.id),
       time_zone: current_user.time_zone
     }
   end
