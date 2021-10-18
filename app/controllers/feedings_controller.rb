@@ -14,7 +14,7 @@ class FeedingsController < ApplicationController
     result = ActivityCreator.new(**feeding_params).call
 
     if result.success?
-      redirect '/dashboard'
+      redirect '/feedings/new'
     else
       p result.error
     end
@@ -46,8 +46,7 @@ class FeedingsController < ApplicationController
     {
       activity_class: 'Feeding',
       started_at_param: params[:activity_started_at],
-      finished_at_param: params[:activity_finished_at],
-      other_params: params.except('activity_started_at', 'activity_finished_at').merge(baby_id: baby.id),
+      other_params: params.except('activity_started_at').merge(baby_id: baby.id),
       time_zone: current_user.time_zone
     }
   end

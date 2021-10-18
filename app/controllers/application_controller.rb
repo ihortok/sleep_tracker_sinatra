@@ -55,7 +55,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def date_formatted_for_ui(date)
-      date.strftime('%Y-%m-%d at %H:%M')
+      date.in_time_zone(user_time_zone).strftime('%Y-%m-%d at %H:%M')
     rescue NoMethodError
       nil
     end

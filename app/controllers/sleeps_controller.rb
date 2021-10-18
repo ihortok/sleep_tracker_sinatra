@@ -16,7 +16,7 @@ class SleepsController < ApplicationController
     sleep = Sleep.new(sleep_params)
 
     if sleep.save
-      redirect '/dashboard'
+      redirect '/sleeps/new'
     else
       erb :'dashboard.html', layout: :'layout.html', locals: { message: 'Something went wrong. Please try again.' }
     end
@@ -57,29 +57,10 @@ class SleepsController < ApplicationController
       time_zone_offset
     )
 
-    finished_at_hour = params['activity_finished_at']['hour']
-    finished_at_minute = params['activity_finished_at']['minute']
-
-    if finished_at_hour.present? && finished_at_minute.present?
-      status = :finished
-      sleep_finished_at = Time.new(
-        params['activity_finished_at']['year'],
-        params['activity_finished_at']['month'],
-        params['activity_finished_at']['day'],
-        finished_at_hour,
-        finished_at_minute,
-        0,
-        time_zone_offset
-      )
-    else
-      status = :running
-    end
-
     {
       baby: baby,
       started_at: sleep_started_at,
-      finished_at: sleep_finished_at,
-      status: status
+      status: :running
     }
   end
 
